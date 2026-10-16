@@ -3,7 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafa Doc — Medicina estética autoral</title>
+  <!-- [PLACEHOLDER: CIDADE] — quando confirmada, completar o título: "… Medicina Estética em <Cidade>" (aqui, em og:title e twitter:title) -->
+  <title>Rafa Doc · Dr. Rafael Juliani — Medicina Estética</title>
+  <meta name="description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <link rel="canonical" href="https://rafadoc.com.br/" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Compartilhamento (WhatsApp, Instagram, Facebook, LinkedIn, X) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rafa Doc" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://rafadoc.com.br/" />
+  <meta property="og:title" content="Rafa Doc · Dr. Rafael Juliani — Medicina Estética" />
+  <meta property="og:description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <meta property="og:image" content="https://rafadoc.com.br/assets/img/og-rafadoc.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dr. Rafael Juliani em retrato vermelho, com a marca Rafa Doc" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rafa Doc · Dr. Rafael Juliani — Medicina Estética" />
+  <meta name="twitter:description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <meta name="twitter:image" content="https://rafadoc.com.br/assets/img/og-rafadoc.jpg" />
+
+  <!-- Dados estruturados (Physician). Pendências do Rafa — acrescentar quando confirmadas:
+       [PLACEHOLDER: CRM]      → "identifier": {"@type":"PropertyValue","propertyID":"CRM","value":"CRM/UF 00000"}
+       [PLACEHOLDER: RQE]      → idem, propertyID "RQE" (só se houver)
+       [PLACEHOLDER: ENDEREÇO] → "address": {"@type":"PostalAddress","streetAddress":"…","addressLocality":"…","addressRegion":"…","postalCode":"…","addressCountry":"BR"}
+       [PLACEHOLDER: HORÁRIO]  → "openingHours": ["Mo-Fr 09:00-18:00"] -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "name": "Dr. Rafael Juliani",
+    "alternateName": "Rafa Doc",
+    "url": "https://rafadoc.com.br/",
+    "image": "https://rafadoc.com.br/assets/img/og-rafadoc.jpg",
+    "logo": "https://rafadoc.com.br/assets/logo/logo-doc-vermelho.svg",
+    "telephone": "+55-47-99192-0666",
+    "sameAs": ["https://instagram.com/docrafa"]
+  }
+  </script>
 
   <!--
     ============================================================
@@ -195,13 +239,13 @@
            style="background: radial-gradient(120% 90% at 70% 20%, rgba(237,10,21,0.74) 0%, rgba(94,0,6,0.82) 45%, rgba(0,0,0,0.92) 100%);"></div>
       <!-- Logo Rafa Doc (branca) ocupando o espaço à direita do Hero, acima do vídeo -->
       <div class="absolute inset-0 z-20 flex items-center justify-end pr-[6%] pointer-events-none">
-        <img src="assets/logo/logo-doc-branco.svg" alt="Rafa Doc" width="1080" height="1080"
+        <img src="assets/logo/logo-doc-branco.svg" alt="" width="1080" height="1080"
              class="hero-logo hidden lg:block w-[38%] max-w-md h-auto" />
       </div>
 
       <div class="relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 pb-16 sm:pb-24">
         <p class="kicker font-gothic text-selective mb-6 hero-rise" style="animation-delay:.15s">No filter. No bullshit.</p>
-        <h1 class="font-gothic font-medium uppercase leading-[0.98] text-latte text-[10.5vw] sm:text-[8vw] lg:text-[6.25rem] max-w-5xl hero-rise" style="animation-delay:.3s">
+        <h1 aria-label="Beleza não se obedece." class="font-gothic font-medium uppercase leading-[0.98] text-latte text-[10.5vw] sm:text-[8vw] lg:text-[6.25rem] max-w-5xl hero-rise" style="animation-delay:.3s">
           <span class="font-amador font-normal">Beleza</span> não se <span class="text-vivid">o<span class="font-amador font-normal">b</span>edece.</span>
         </h1>
         <p class="font-gothic text-latte/80 mt-8 max-w-xl text-lg leading-relaxed hero-rise" style="animation-delay:.45s">
@@ -235,7 +279,7 @@
         <div class="sr-stagger">
           <p class="kicker font-gothic text-vivid mb-6">Filosofia</p>
           <!-- Título: Special Gothic Bold CAIXA ALTA (base) + Amador só como ornamento em letras soltas SEM acento -->
-          <h2 class="font-gothic font-medium uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-8">
+          <h2 aria-label="A pele não é moldura. É matéria viva." class="font-gothic font-medium uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-8">
             A <span class="font-amador font-normal">p</span>ele não é <span class="font-amador font-normal">m</span>oldura.<br />É <span class="text-vivid">matéria <span class="font-amador font-normal">v</span>iva</span>.
           </h2>
           <div class="font-gothic text-black/70 space-y-5 text-lg leading-relaxed max-w-xl">
@@ -246,7 +290,7 @@
                proporção, expressão, história — e partem daí. O procedimento é meio;
                a identidade é o ponto de partida.</p>
           </div>
-          <blockquote class="font-gothic font-medium text-3xl sm:text-4xl text-black mt-10 border-l-4 border-vivid pl-6">
+          <blockquote aria-label="Autocuidado não é ceder. É escolher." class="font-gothic font-medium text-3xl sm:text-4xl text-black mt-10 border-l-4 border-vivid pl-6">
             “<span class="font-amador font-normal">A</span>utocuidado não é ceder. É <span class="text-vivid font-amador font-normal">escolher</span>.”
           </blockquote>
         </div>
@@ -279,7 +323,7 @@
       <div id="diferenciais" class="absolute inset-0 z-30 flex items-center text-latte">
         <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
           <p class="kicker font-gothic text-selective mb-6 reveal-up">Diferenciais</p>
-          <h2 class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 max-w-3xl reveal-up" style="transition-delay:.1s">
+          <h2 aria-label="Estética não apaga quem você é. Revela." class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 max-w-3xl reveal-up" style="transition-delay:.1s">
             <span class="font-amador font-normal">E</span>stética não apaga quem você é. <span class="text-vivid"><span class="font-amador font-normal">R</span>evela.</span>
           </h2>
 
@@ -322,10 +366,10 @@
 
           <!-- Linha de selos -->
           <div class="mt-8 flex flex-wrap gap-10 sm:gap-14 items-center justify-center reveal-up" style="transition-delay:.72s">
-            <img src="assets/selos/nofilter.png" width="267" height="158" alt="Selo No Filter" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/nofilter.png" width="267" height="158" alt="Selo No filter. No bullshit." class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
             <img src="assets/selos/notobey.png" width="277" height="158" alt="Selo Do Not Obey" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
-            <img src="assets/selos/autentic.png" width="164" height="160" alt="Selo Authentic" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
-            <img src="assets/selos/skin.png" width="126" height="158" alt="Selo God Save the Skin" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/autentic.png" width="164" height="160" alt="Selo Authenticity" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/skin.png" width="126" height="158" alt="Selo Skin" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
           </div>
         </div>
       </div>
@@ -338,7 +382,7 @@
     <section id="servicos" class="relative z-30 bg-latte text-black py-24 sm:py-32">
       <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <p class="kicker font-gothic text-vivid mb-6 sr">Experiências</p>
-        <h2 class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-4 max-w-3xl sr" style="transition-delay:.08s">
+        <h2 aria-label="Não é cardápio. É experiência." class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-4 max-w-3xl sr" style="transition-delay:.08s">
           <span class="font-amador font-normal">N</span>ão é cardápi<span class="font-amador font-normal">o.</span> É <span class="text-vivid">e<span class="font-amador font-normal">x</span>periência</span>.
         </h2>
         <p class="font-gothic text-black/60 text-lg max-w-2xl mb-14 sr" style="transition-delay:.16s">
@@ -438,7 +482,7 @@
       <!-- COPY na parte SUPERIOR (acima da linha central da marquee) — segue legível sobre a imagem -->
       <div class="absolute inset-x-0 top-0 h-screen z-10 flex flex-col items-center justify-center text-center px-5 sm:px-8 sr-stagger">
         <p class="kicker font-gothic text-latte/80 mb-6">Lifestyle</p>
-        <h2 class="font-gothic font-medium uppercase text-latte text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight" style="text-shadow:0 2px 28px rgba(0,0,0,.6)">
+        <h2 aria-label="Freedom isn’t a product." class="font-gothic font-medium uppercase text-latte text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight" style="text-shadow:0 2px 28px rgba(0,0,0,.6)">
           Freedom isn't<br />a product.
         </h2>
         <p class="font-gothic text-latte/90 mt-8 max-w-xl mx-auto text-lg" style="text-shadow:0 2px 16px rgba(0,0,0,.7)">
@@ -484,7 +528,7 @@
         <!-- intro: pôster real (candidato) + posicionamento de autoridade -->
         <div class="grid lg:grid-cols-2 gap-14 items-center mb-20 sr-stagger">
           <div>
-            <img src="assets/img/rafael-juliani-1280.webp" srcset="assets/img/rafael-juliani-640.webp 640w, assets/img/rafael-juliani-1280.webp 1280w, assets/img/rafael-juliani-1920.webp 1920w" sizes="(min-width: 1024px) 600px, 100vw" width="1920" height="1080" alt="Pôsteres Dr. Rafael Juliani"
+            <img src="assets/img/rafael-juliani-1280.webp" srcset="assets/img/rafael-juliani-640.webp 640w, assets/img/rafael-juliani-1280.webp 1280w, assets/img/rafael-juliani-1920.webp 1920w" sizes="(min-width: 1024px) 600px, 100vw" width="1920" height="1080" alt="Dr. Rafael Juliani de jaleco, gravata e estetoscópio, em retrato com luz vermelha"
                  class="w-full h-auto border border-black/10 shadow-2xl" loading="lazy" />
             <p class="font-gothic text-black/40 text-xs mt-3">imagem real BEHANCE · candidata a teste</p>
           </div>
@@ -508,7 +552,7 @@
              PENDENTE: links dos 3 reels + confirmar direitos de uso.
         ============================================================= -->
         <p class="kicker font-gothic text-vivid mb-2 sr">Prova real</p>
-        <h3 class="font-amador font-normal tracking-normal text-3xl sm:text-4xl mb-10 leading-[1.05] sr" style="transition-delay:.08s">Na pele de quem <span class="text-vivid">viveu</span>.</h3>
+        <h3 aria-label="Na pele de quem viveu." class="font-amador font-normal tracking-normal text-3xl sm:text-4xl mb-10 leading-[1.05] sr" style="transition-delay:.08s">Na pele de quem <span class="text-vivid">viveu</span>.</h3>
 
         <!-- responsivo: empilhado no mobile, 3 lado a lado no desktop (até 4 reels) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto sr-stagger">
@@ -545,7 +589,7 @@
              style="background: radial-gradient(120% 120% at 50% 30%, #ED0A15 0%, #b00810 70%, #7a0008 100%);">
       <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
         <p class="kicker font-gothic text-latte/70 mb-6 sr">Vamos nessa</p>
-        <h2 class="font-gothic font-medium uppercase tracking-tight text-6xl sm:text-7xl lg:text-8xl leading-[0.92] mb-8 sr" style="transition-delay:.1s">
+        <h2 aria-label="Vamos começar a sua." class="font-gothic font-medium uppercase tracking-tight text-6xl sm:text-7xl lg:text-8xl leading-[0.92] mb-8 sr" style="transition-delay:.1s">
           Vamos <span class="font-amador font-normal">c</span>omeçar<br />a <span class="text-black"><span class="font-amador font-normal">s</span>ua</span>.
         </h2>
         <p class="font-gothic text-latte/85 text-lg sm:text-xl max-w-xl mx-auto mb-12 sr" style="transition-delay:.2s">
