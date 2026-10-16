@@ -1,190 +1,234 @@
 # AUDITORIA — Rafa Doc (vistoria pré go-live)
 
-- **Branch:** `vistoria-golive` (a partir de `main` @ `be2c99c`)
+- **Branch:** `vistoria-golive` (a partir de `main` @ `be2c99c`). **Sem merge na `main`.**
 - **Data:** 16/10/2026
-- **Etapa atual:** 1 — Varredura. **Nenhuma correção aplicada ainda.**
-- Linhas citadas são de `index.html` (646 linhas), salvo indicação.
-- Legenda de gravidade: 🔴 bloqueia lançamento · 🟠 importante · 🟢 melhoria
-- Legenda de status: ⏳ aberto · ✅ corrigido · 📌 pendente (Rafa) · ⚖️ decisão (Eddi)
+- **Etapas:** 1 (varredura) ✅ · 2 (correções A→G) ✅ · 3 (verificação) ✅
+- Linhas `l.` citadas nas tabelas de blocos são da versão original (`main` @ `be2c99c`).
+- Gravidade: 🔴 bloqueia lançamento · 🟠 importante · 🟢 melhoria
+- Status: ✅ corrigido · 📌 pendente (dado do Rafa) · ⚖️ decisão (Eddi) · ➖ sem ação
+
+Commits: `A` 68451ae · `B` 4c0b281 · `C` 08f962d · `D` 93f5781 · `E` caa9206 · `F` 320e4d4 · `G` 973912a
 
 ---
 
 ## Decisões para o Eddi
 
-Itens que mudam algo visível, ou que dependem de escolha. **Não serão aplicados sem o seu OK.**
+### Já decididas (16/10) e aplicadas
+
+| # | Decisão | Resultado |
+|---|---|---|
+| 1 | "Botox" → "Toxina botulínica" | ✅ Título do card, modal e mensagem do WhatsApp |
+| 2 | Seção "Prova real" | ➖ Mantida visível aguardando os vídeos (ver N3) |
+| 3 | "No filter. No bullshit." | ➖ Mantido; copy será validada depois |
+| 4 | E-mail `contato@rafadoc.com.br` | ➖ Mantido (rodapé e política de privacidade) |
+| 5 | Título longo | ✅ `Rafa Doc · Dr. Rafael Juliani — Medicina Estética` (cidade entra quando confirmada) |
+| 6 | Serviços com descrição + CTA | ✅ Card inteiro abre um **modal** com descrição curta e "Saber mais no WhatsApp", mensagem com o nome do serviço. Modal em vez de sanfona: sanfona num grid de 2 colunas desalinha as linhas no celular |
+| 7 | Todo botão leva ao WhatsApp `55 47 99192-0666` | ✅ Menu, hero, 5 serviços, CTA final, rodapé (ver N4) |
+| 8 | Contraste do botão vermelho | ✅ Texto **preto** sobre vermelho (4,66:1, passa AA). Hover amarelo/preto igual ao anterior |
+| 9 | Textos apagados | ✅ Opacidade mínima `/60` |
+| 10 | Imagens de serviço por IA | 📌 Não consigo gerar imagens aqui. Prompts prontos em `PROMPTS-IMAGENS-SERVICOS.md`; o HTML marca onde cada uma entra (`[IMAGEM IA PENDENTE]`) |
+| 11 | Pin Filosofia → Diferenciais | ✅ Link "Diferenciais" do menu agora para nos cards. 📌 Teste em iPhone/iPad real fica com você |
+
+### Novas — precisam de resposta
 
 | # | Decisão | Prós | Contras |
 |---|---|---|---|
-| D1 | Trocar o título do card "Botox" por **"Toxina botulínica"** (l.355) | Tira marca registrada do título; padrão dos sites de referência | Texto mais longo no card; perde a palavra que a cliente pesquisa (dá para manter "botox" no alt/descrição) |
-| D2 | **Esconder a seção "Prova real"** (l.489–516) com `hidden` até existirem os reels autorizados | Some o bloco de placeholder sem apagar nada; volta com 1 atributo | A página perde a prova social visual por enquanto; o menu "Autoridade" continua apontando para `#prova`, que segue visível (intro do Dr.) |
-| D3 | **CTA por serviço:** hoje os cards de Serviços não têm link. Proposta: o card inteiro vira link para o WhatsApp com a mensagem do serviço (sem botão novo; só cursor e foco) | Cumpre o "mensagem por serviço" sem mexer no layout | Clique acidental no mobile ao rolar; se preferir, alternativa é um link de texto pequeno "Perguntar sobre isso →" (muda o visual) |
-| D4 | **Contraste do botão vermelho:** latte `#FFF8E9` sobre vermelho `#ED0A15` = **4,26:1** (AA pede 4,5 para texto pequeno). Afeta botões do menu e do hero (l.174, 211) | Opções sem sair da paleta: (a) texto do botão em **preto** (≈4,9:1); (b) subir o texto para ≥14px bold (conta como "texto grande", passa com 3:1) | (a) muda a cara do botão; (b) muda proporção. Manter como está = Acessibilidade continua ~95 no Lighthouse, mas reprova AA estrito |
-| D5 | **Textos de apoio com baixa opacidade** no fundo creme (`text-black/40`, `/50`, `/60`) e no rodapé (`text-latte/30`): subir para no mínimo `/60` (creme) e `/60` (preto) | Passa AA | Hierarquia fica menos "sussurrada" |
-| D6 | **Botão "WhatsApp" do menu** (l.174) aponta para `#contato`, igual ao do hero. Proposta: abrir o WhatsApp direto com `data-cta="nav"` e mensagem do hero | Coerência com o rótulo | Não está na lista original de CTAs — por isso pergunto |
-| D7 | **"No filter. No bullshit."** (l.202, kicker do hero): palavrão em página de médico. O CFM pede "decoro" na publicidade | Mantém a voz aprovada | Risco reputacional/ético baixo, mas existe. Só sinalizo — não mexo |
-| D8 | **Fotos dos cards de Serviço:** só há 2 fotos (`serv1`, `serv2`) repetidas em 5 cards, e não batem com o serviço (ex.: `serv2` mostra laser/aparelho e está em "Preenchimento"). Também mostram rosto de paciente | — | Precisa de foto certa por serviço + **termo de uso de imagem da paciente** (CFM 2.336/2023). Proposta: manter até chegar material, mas com alt honesto |
-| D9 | **Pin Filosofia → Diferenciais (300vh)**: já está **desligado abaixo de 1024px** (l.144–152), então celular não trava. Fica ativo em iPad deitado e desktop. O link "Diferenciais" do menu cai no começo do pin (mostra a Filosofia, não os Diferenciais) | Corrigir o salto do link (rolar até ~60% do trilho) não muda o visual | Teste em iOS Safari real não pode ser feito daqui — precisa de você no aparelho |
-| D10 | **`contato@rafadoc.com.br` no rodapé** (l.554): só fica se a caixa existir | — | Se não existir, retirar a linha (mudança visível) |
-| D11 | **Título da aba** → `Dr. Rafael Juliani — Medicina Estética em [CIDADE]` | Busca local e prévia de link | Sai o "Rafa Doc" do título; alternativa: `Rafa Doc · Dr. Rafael Juliani — Medicina Estética em [CIDADE]` (mais longo) |
+| N1 | **Arquivos internos ficariam públicos.** O Cloudflare Pages publica tudo o que está no repositório: `rafadoc.com.br/AUDITORIA.md` (com riscos legais e pendências), `PROMPTS-IMAGENS-SERVICOS.md`, `package.json`. Proposta: antes do merge, tirar os dois `.md` da branch (ficam no PR e na pasta local) | Nada interno exposto | Perde o histórico do relatório no repo (fica no PR) |
+| N2 | **Textos vermelhos pequenos sobre creme** (kickers "Filosofia", "Experiências", "Autoridade", "Prova real") = 4,25:1, e **texto creme sobre o vermelho do CTA final** ≈ 4,3:1. Ficam um pouco abaixo do AA (4,5). O Lighthouse deu 100 porque eles estão em fade no momento do teste | Manter: preserva o vermelho de marca | Alternativa: texto preto nesses pontos (muda a assinatura visual). Recomendo manter |
+| N3 | **"Prova real" visível com placeholders** ("[ REEL 9:16 ]…", "@influencer — a confirmar"). Pela decisão 2 ficou, mas o critério de pronto diz "nenhum texto de rascunho visível" | Seção pronta para receber os reels | Se os vídeos não chegarem até o lançamento, esconder com `hidden` (1 atributo) |
+| N4 | **"Conhecer a filosofia"** (botão secundário do hero) continua rolando para a Filosofia | Dois botões de WhatsApp lado a lado ficariam redundantes | Se "todo botão" incluir esse também, é uma linha |
+| N5 | **LCP local = 2,6 s** (meta 2,5 s). O que segura é a troca para Special Gothic, que vem do Google em 2 servidores externos. No Cloudflare (brotli, HTTP/3) deve passar | Manter o CDN do Google, como diz o CLAUDE.md | Se não passar no ar: hospedar a fonte no próprio site (licença OFL, permitido) — ganho estimado de 0,3–0,5 s |
+| N6 | **Textos novos dos modais de serviço** (5 descrições + "Tudo começa numa conversa…" + aviso "Procedimento médico…") seguem a skill `rafadoc-copy` e não prometem resultado, mas são copy nova | — | Validar com o Rafa junto com a revisão de copy |
+| N7 | **Fotos atuais dos serviços** continuam no ar até chegarem as de IA, ainda com rosto de paciente | Página não fica sem imagem | Precisa do termo de uso de imagem (P12) **ou** trocar antes do lançamento |
 
 ---
 
 ## Pendências do Rafa
 
-Tudo que vai virar placeholder comentado no HTML (`<!-- [PLACEHOLDER: …] -->`). Nada será inventado.
+Tudo está como placeholder comentado no HTML (`<!-- [PLACEHOLDER: …] -->`). Nada foi inventado.
 
-| # | Dado | Onde entra |
-|---|---|---|
-| P1 | **CRM** (número + UF) | Rodapé, JSON-LD |
-| P2 | **RQE** (se houver; se não houver, confirmar — e aí a palavra "especialista" fica proibida. Hoje ela **não aparece** no site) | Rodapé, JSON-LD |
-| P3 | **Endereço, bairro e cidade** do consultório + link do Google Maps | Seção "Onde atende", JSON-LD, `<title>` |
-| P4 | **Horário de atendimento** e se é só particular | "Onde atende", JSON-LD |
-| P5 | **Formação** (graduação, residência/pós, sociedades) — 3 a 5 linhas | Seção Autoridade |
-| P6 | **Confirmar o número do WhatsApp** `47 99192 0666` (o próprio site diz "confirmar número") | Todos os CTAs |
-| P7 | **E-mail de contato** existe? Qual? | Rodapé, Política de privacidade |
-| P8 | **Controlador dos dados (LGPD)**: nome/razão social, CPF/CNPJ e e-mail do encarregado | `privacidade.html` |
-| P9 | **ID do GA4** (`G-XXXXXXX`) e **ID do Meta Pixel** (`PIXEL_ID`) | Script de medição |
-| P10 | **FAQ** — respostas das 4 perguntas (primeira consulta, duração, particular, cuidados depois) | Seção FAQ |
-| P11 | **Reels de Prova real**: links + autorização de uso das pessoas que aparecem | Seção Prova real |
-| P12 | **Termo de uso de imagem** das pacientes que aparecem em `serv1.png` e `serv2.png` | Cards de Serviço |
-| P13 | **Instagram oficial**: confirmar `@docrafa` | Rodapé, JSON-LD `sameAs` |
+| # | Dado | Onde entra | Bloqueia? |
+|---|---|---|---|
+| P1 | **CRM** (número + UF) | Rodapé (home e privacidade), JSON-LD | 🔴 Sim (CFM) |
+| P2 | **RQE** — se não houver, confirmar. "Especialista" não aparece no site | Rodapé, JSON-LD | 🔴 Se houver |
+| P3 | **Endereço, bairro, cidade** + link do Google Maps | Seção "Onde atende" (oculta), JSON-LD, `<title>`/OG | 🟠 |
+| P4 | **Horário** e se é só particular | "Onde atende", JSON-LD | 🟠 |
+| P5 | **Formação** (graduação, residência/pós, sociedades) | Lista oculta na Autoridade | 🟠 |
+| P6 | **Confirmar o WhatsApp** `47 99192 0666` | Todos os CTAs | 🔴 |
+| P7 | **E-mail** `contato@rafadoc.com.br` existe e é lido? | Rodapé, política de privacidade | 🟠 |
+| P8 | **Controlador (LGPD):** nome completo/razão social + CPF/CNPJ; encarregado, se houver | `privacidade.html` | 🟠 |
+| P9 | **ID do GA4** (`G-XXXXXXX`) e **ID do Meta Pixel** (`PIXEL_ID`) | `assets/js/medicao.js` (sem IDs, nada carrega — sem erro) | 🟢 |
+| P10 | **FAQ** — respostas das 4 perguntas | Seção FAQ (oculta) | 🟢 |
+| P11 | **Reels de Prova real**: links + autorização das pessoas | Seção Prova real | 🟠 (ver N3) |
+| P12 | **Termo de uso de imagem** das pacientes em `servico-1/2` (ou trocar pelas de IA) | Cards e modais de serviço | 🟠 (ver N7) |
+| P13 | **Instagram**: confirmar `@docrafa` | Rodapé, JSON-LD | 🟢 |
+| P14 | **Cidade** para o título e o OG | `<title>`, `og:title`, `twitter:title` | 🟢 |
 
 ---
 
-## Linha de base (antes)
+## Verificação (Etapa 3)
 
-Medido localmente (servidor estático Python, sem compressão nem cache — no Cloudflare essas duas coisas melhoram sozinhas). Lighthouse 12, mobile, 4G simulado.
+Lighthouse 12, mobile, 4G simulado, servidor local **sem compressão e sem cache** (no Cloudflare as duas coisas
+são automáticas, então os números no ar devem ficar iguais ou melhores).
 
-| Métrica | Antes | Meta | Depois |
+| Métrica | Antes | Depois | Meta |
 |---|---|---|---|
-| Performance | **69** | ≥80 | — |
-| Acessibilidade | 95 | ≥90 | — |
-| Boas práticas | 96 | ≥90 | — |
-| SEO | 91 | ≥90 | — |
-| LCP | **59,9 s** | <2,5 s | — |
-| FCP | 3,1 s | — | — |
-| CLS | 0 | — | — |
-| Peso no 1º carregamento | **~43 MB** (42.000 KiB) | — | — |
-| Maior arquivo do deploy | **`videos/Final_BG.mp4` = 26,5 MiB** (limite do Cloudflare: 25 MiB) | ≤25 MiB | — |
+| Performance | 69 | **97** | ≥80 ✅ |
+| Acessibilidade | 95 | **100** | ≥90 ✅ |
+| Boas práticas | 96 | **100** | ≥90 ✅ |
+| SEO | 91 | **100** | ≥90 ✅ |
+| LCP | 59,9 s | **2,6 s** | <2,5 s ⚠️ (N5) |
+| FCP | 3,1 s | **1,1 s** | — |
+| Speed Index | 3,4 s | **1,1 s** | — |
+| CLS | 0 | 0,002 | — |
+| `privacidade.html` | — | 95 / 100 / 100 / 100 | — |
 
-Composição do 1º carregamento: `Final_BG.mp4` 27 MB · `SKI-2N.png` (só como poster) 6 MB · `bw-portrait…png` (poster) 3 MB · `skin-v.mp4` 2,8 MB · `serv2.png` 1,9 MB · `serv1.png` 1,8 MB · Tailwind CDN 123 KB · Amador `.ttf` 85 KB.
+| Peso | Antes | Depois |
+|---|---|---|
+| 1º carregamento — celular (Lighthouse) | **~43 MB** | **1,4 MB** (vídeo 720p 1,1 MB) |
+| 1º carregamento — desktop | ~38 MB | ~3,6 MB (vídeo 1080p 3,3 MB) |
+| Maior arquivo do deploy | 26,5 MiB (`Final_BG.mp4`, acima do limite) | **3,2 MiB** (`videos/final-bg.mp4`) ✅ |
+| Repositório publicado | 66,7 MiB, 29 arquivos | **5,2 MiB**, 41 arquivos |
 
-Console (375/768/1280): 1 erro — `favicon.ico` 404. Tailwind CDN também emite o aviso "should not be used in production" no navegador normal. Rolagem lateral: **nenhuma** nas 3 larguras.
+Outros testes:
+
+- **CTAs (9):** todos abrem `wa.me/5547991920666` em nova aba (`noopener`) com a mensagem certa:
+  `nav`/`hero` "…quero agendar uma avaliação." · `servico-<nome>` "…quero saber sobre <serviço>." ·
+  `final` "…quero conversar." · `rodape` "Oi, Dr. Rafa! Vim pelo site."
+- **Console:** sem erros nem avisos em 375, 768 e 1280px (home e privacidade). **Sem rolagem lateral.**
+- **Modais:** abrem pelo card (clique ou teclado); fecham no ×, no Esc e clicando fora; o foco volta ao card; a página
+  não rola por trás.
+- **Cookies:** 1ª visita mostra o banner; Recusar/Aceitar grava e some; "Preferências de cookies" reabre. Sem aceite,
+  **zero** requisições ao Google/Meta. Testado com IDs fictícios: após o aceite, GA4 recebe `section_view` (incluindo
+  as seções vistas antes do aceite) e `whatsapp_click {cta_id}`; o Pixel recebe `PageView` e `Contact`.
+- **Reduced-motion:** vídeo do hero parado no poster, marquee parada, pin desfeito (seções empilhadas), reveals
+  estáticos, smooth scroll desligado.
+- **Círculo de pele:** volta ao tamanho do original (comparação lado a lado com a versão em imagem).
+- **`privacidade.html`, `robots.txt`, `sitemap.xml`:** respondem 200.
+- **Visual:** screenshots antes/depois em 375, 768 e 1280px. Mudanças visíveis: só as aprovadas (decisões 1, 6, 8, 9),
+  os textos de rascunho que saíram (E), o rodapé legal e o banner de cookies (D).
+- **Não testado:** iPhone/iPad real (Safari) — 📌 com o Eddi.
 
 ---
 
 ## A. Performance e arquivos
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| A1 | `Final_BG.mp4` tem 26,5 MiB (1920×1080, 16 Mb/s, **com faixa de áudio** inútil — vídeo é `muted`). Cloudflare Pages recusa >25 MiB → **o deploy falha** | l.190 | 🔴 | Reencodar H.264 sem áudio, `+faststart`: 1080p ≤5 MB (desktop) e 720p ≤2 MB (mobile) via `<source media>`/troca por JS. Original vai para `_fontes/` | Sim | ⏳ |
-| A2 | Poster do hero `bw-portrait-beauty-black-woman.png` 2,9 MB (1280×1920) | l.189 | 🔴 | Poster leve em WebP (≤150 KB), idealmente um frame do próprio vídeo | Sim (se usar o mesmo retrato) | ⏳ |
-| A3 | `skin-v.mp4` 2,8 MB (624×624, com áudio) para um círculo de ~576px | l.266 | 🟠 | Reencodar sem áudio (meta ≤600 KB) | Sim | ⏳ |
-| A4 | `SKI-2N.png` 5,9 MB é baixada **só como poster** do vídeo de pele (RGBA 1920×2041) | l.263 | 🔴 | Poster WebP ~600px (≤60 KB) | Sim | ⏳ |
-| A5 | `serv1.png` / `serv2.png` 1,8–1,9 MB cada (941×1672) para cards de ~240px | l.352–388 | 🟠 | WebP 2 tamanhos (480/960) + `srcset`/`sizes` + `width`/`height` | Sim | ⏳ |
-| A6 | `BEHANCE/TELA-12-BEHANCE-DOC@2x.png` 7,8 MB (3840×2160) | l.466 | 🟠 | WebP 3 tamanhos (640/1280/1920) + `srcset` + `width`/`height` | Sim | ⏳ |
-| A7 | `ROSA-2.png` 1 MB / `ROSA-2-mobile.png` 0,5 MB (fundo da Lifestyle) | l.410–412 | 🟢 | WebP mantendo o `<picture>` | Sim | ⏳ |
-| A8 | Logo vermelha da marquee em PNG 1080×1080 (6 cópias, 30 KB) | l.439–452 | 🟢 | Usar `LOGO-DOC-VERMELHO.svg` (já existe, 5 KB) | Sim | ⏳ |
-| A9 | **Arquivos no deploy que a página não usa** (~16 MB): `Assets/imgs/ROSA.png` (8,4 MB), `Assets/imgs/SKIN.png` (5,7 MB), 4 logos `.pdf` (1,5 MB), logos `.png` amarelo/branco/preto, `LOGO-DOC-PRETO.svg`, `LOGO-DOC-VERMELHO.svg`* | repo | 🟠 | Mover para `_fontes/` (fora do deploy via `.cfignore`/pasta de publicação). Não apagar. *O SVG vermelho volta a ser usado se A8 for feito | Sim | ⏳ |
-| A10 | Tailwind via CDN (`cdn.tailwindcss.com`): bloqueia renderização (~1,8 s), 123 KB de JS, aviso no console | l.21, 33–49 | 🔴 | Tailwind CLI v3 com o mesmo `tailwind.config` → `assets/css/site.css` minificado só com as classes usadas. Nenhuma classe do HTML muda | Sim | ⏳ |
-| A11 | Fonte Amador em `.ttf` com espaço no nome (`Amador%20GothicC.ttf`), sem preload | l.55 | 🟠 | Converter para `amador.woff2`, `preload` (ela aparece no H1 do hero) | Sim | ⏳ |
-| A12 | Nomes com maiúscula/espaço/`@` (`Assets/`, `BEHANCE/`, `Final_BG.mp4`, `TELA-12-BEHANCE-DOC@2x.png`, `SKI-2N.png`, `LOGO-DOC-*`). Cloudflare diferencia maiúsculas | todo o HTML | 🟠 | `assets/`, `assets/img/`, `videos/final-bg.mp4`, `rafael-juliani-poster.webp` etc. Atualizar todas as referências | Sim | ⏳ |
-| A13 | Vídeo de pele com `preload="auto"` + `autoplay` abaixo da dobra | l.262 | 🟠 | `preload="none"`/`metadata` + tocar só ao entrar na tela (IntersectionObserver) | Sim | ⏳ |
-| A14 | Imagens sem `width`/`height` (Lighthouse "unsized-images") | logos, selos, serviços, Behance | 🟢 | Adicionar dimensões intrínsecas | Sim | ⏳ |
-| A15 | Sem cabeçalhos de cache para assets | deploy | 🟢 | Arquivo `_headers` do Cloudflare Pages (cache longo para `/assets/*` e `/videos/*`) | Sim | ⏳ |
-| A16 | Logo do nav e do hero é a mesma `LOGO-DOC-BRANCO.svg`; comentário diz "amarela" | l.195–197 | 🟢 | Só corrigir o comentário | Sim | ⏳ |
+| # | Problema | Onde | Grav. | Correção | Status |
+|---|---|---|---|---|---|
+| A1 | `Final_BG.mp4` 26,5 MiB, com áudio — o deploy falharia | l.190 | 🔴 | H.264 sem áudio, `+faststart`: `final-bg.mp4` 1080p **3,3 MB** e `final-bg-720.mp4` **1,1 MB** via `<source media>` | ✅ |
+| A2 | Poster do hero PNG 2,9 MB | l.189 | 🔴 | `hero-poster.webp` 83 KB (mesmo retrato) | ✅ |
+| A3 | `skin-v.mp4` 2,8 MB com áudio | l.266 | 🟠 | `pele-macro.mp4` **240 KB** | ✅ |
+| A4 | `SKI-2N.png` 5,9 MB só como poster | l.263 | 🔴 | `pele-macro.webp` 15 KB | ✅ |
+| A5 | `serv1/2.png` 1,8–1,9 MB | l.352–388 | 🟠 | WebP 480/941px com `srcset` (20–65 KB) | ✅ |
+| A6 | `TELA-12…@2x.png` 7,8 MB | l.466 | 🟠 | `rafael-juliani-640/1280/1920.webp` (9–59 KB) com `srcset` | ✅ |
+| A7 | `ROSA-2*.png` 0,5–1 MB | l.410–412 | 🟢 | `lifestyle*.webp` 23–29 KB | ✅ |
+| A8 | Logo PNG na marquee | l.439–452 | 🟢 | `logo-doc-vermelho.svg` (mesma cor `#ED1C24`) | ✅ |
+| A9 | ~16 MB de arquivos não usados no deploy | repo | 🟠 | Movidos para `_fontes/` (**fora do git** via `.gitignore`; preservados na pasta local e no histórico do git). Não houve exclusão | ✅ |
+| A10 | Tailwind CDN | l.21, 33–49 | 🔴 | `assets/css/site.css` (18 KB) via Tailwind CLI 3.4.17, mesma config. **Ao mudar classes: `npm run build:css`** | ✅ |
+| A11 | Amador `.ttf` com espaço, sem preload | l.55 | 🟠 | `assets/fonts/amador.woff2` (32 KB) + preload | ✅ |
+| A12 | Nomes com maiúsculas/espaço/`@` | todo o HTML | 🟠 | `assets/{css,fonts,img,js,logo,selos}`, `videos/`, tudo minúsculo | ✅ |
+| A13 | Vídeo de pele `preload=auto` abaixo da dobra | l.262 | 🟠 | `preload=none` + toca/pausa por IntersectionObserver | ✅ |
+| A14 | Imagens sem `width`/`height` | várias | 🟢 | Adicionados | ✅ |
+| A15 | Sem cache | deploy | 🟢 | `_headers` (7 dias para `/assets/*` e `/videos/*`) | ✅ |
+| A16 | Comentário "logo amarela" errado | l.195 | 🟢 | Corrigido | ✅ |
+| A17 | *(novo)* Google Fonts bloqueando a renderização (~1,6 s) | `<head>` | 🟠 | `preload` + `media=print/onload` (mantém o CDN) | ✅ |
 
 ## B. Conversão e medição
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| B1 | Botão "Falar no WhatsApp" do hero aponta para `#contato` | l.211 | 🔴 | `https://wa.me/5547991920666?text=…` com "Oi, Dr. Rafa! Vim pelo site e quero agendar uma avaliação." + `data-cta="hero"` | Sim | ⏳ |
-| B2 | Links `wa.me` sem mensagem pré-preenchida (CTA final e rodapé) | l.536, 553 | 🟠 | Mensagens por origem; `data-cta="final"` e `"rodape"` | Sim | ⏳ |
-| B3 | Serviços não têm CTA nenhum | l.347–394 | 🟠 | Ver **D3** | Não | ⚖️ |
-| B4 | Botão "WhatsApp" do menu aponta para `#contato` | l.174 | 🟠 | Ver **D6** | Não | ⚖️ |
-| B5 | Sem `target="_blank"` / `rel="noopener"` em nenhum link externo | l.536, 553–555 | 🟠 | Adicionar em todos os CTAs e no Instagram | Sim | ⏳ |
-| B6 | Sem medição | — | 🟠 | GA4 (`whatsapp_click` com `cta_id`; `section_view` 1x por seção) + Meta Pixel (`Contact`). IDs placeholder. Carregam só após consentimento (D-5) | Sim | ⏳ |
-| B7 | Alvos de toque <44px: botão "WhatsApp" do menu (32px), logo do menu (28px), links do rodapé (18px), links do menu (16px, desktop) | l.164, 174, 553–555 | 🟠 | `min-height:44px` / padding vertical invisível (sem mudar o desenho do botão) | Sim (só área de toque) | ⏳ |
+| # | Problema | Onde | Grav. | Correção | Status |
+|---|---|---|---|---|---|
+| B1 | Hero aponta para `#contato` | l.211 | 🔴 | WhatsApp + `data-cta="hero"` | ✅ |
+| B2 | `wa.me` sem mensagem | l.536, 553 | 🟠 | Mensagem por origem (`final`, `rodape`) | ✅ |
+| B3 | Serviços sem CTA | l.347–394 | 🟠 | Modal por serviço + CTA `servico-<nome>` (decisão 6) | ✅ |
+| B4 | Botão do menu aponta para `#contato` | l.174 | 🟠 | WhatsApp + `data-cta="nav"` (decisão 7) | ✅ |
+| B5 | Sem `target`/`rel` | l.536, 553–555 | 🟠 | `target="_blank" rel="noopener"` | ✅ |
+| B6 | Sem medição | — | 🟠 | `assets/js/medicao.js`: GA4 `whatsapp_click` (`cta_id`) + `section_view` (1x/seção); Pixel `Contact`. IDs placeholder (P9) | ✅ |
+| B7 | Alvos de toque <44px | l.164, 174, 553–555 | 🟠 | Classe `.hit` (área invisível ≥44px, desenho igual) | ✅ |
 
 ## C. SEO e compartilhamento
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| C1 | Sem `meta description` | `<head>` | 🔴 | Descrição de ~150 caracteres na voz da marca (sem promessa) | Sim | ⏳ |
-| C2 | Sem Open Graph / Twitter card (prévia do WhatsApp/Instagram sai sem imagem) | `<head>` | 🔴 | `og:title`, `og:description`, `og:image` 1200×630 (gerada do retrato TELA-12 + logo, sem texto novo), `og:url`, `og:locale=pt_BR`, `twitter:card=summary_large_image` | Sim | ⏳ |
-| C3 | Sem `canonical` | `<head>` | 🟠 | `https://rafadoc.com.br/` | Sim | ⏳ |
-| C4 | Sem favicon (404 no console) nem `theme-color` | `<head>` | 🟠 | `favicon.svg` (logo vermelha), `apple-touch-icon.png` 180px, `theme-color #000000` | Sim | ⏳ |
-| C5 | `<title>` sem especialidade/cidade | l.6 | 🟠 | Ver **D11** | Não | ⚖️ |
-| C6 | Sem dados estruturados | — | 🟠 | JSON-LD `Physician` (nome, URL, telefone, `sameAs` Instagram); endereço, CRM, horário como placeholder comentado | Sim | ⏳ |
-| C7 | Sem `robots.txt` e `sitemap.xml` | raiz | 🟠 | Criar ambos (sitemap com `/` e `/privacidade.html`) | Sim | ⏳ |
-| C8 | Hierarquia: 1 `h1` ✓, 6 `h2` ✓. Mas os títulos com letras em `<span>` são lidos "certos" pelo texto, **porém** com quebra (`moldura.É`, `isn'ta`, `começara`) por causa do `<br>` | l.238, 421, 528 | 🟢 | `aria-label` com a frase inteira em todos os títulos com spans/`<br>` (h1 e h2) | Sim | ⏳ |
-| C9 | "Prova real" é um `h3` solto dentro de `#prova`, sem `h2` próprio | l.490 | 🟢 | Fica `h3` sob o `h2` "Dr. Rafael Juliani" — aceitável; reavaliar se D2 for aprovado | — | ⏳ |
-| C10 | Alts genéricos: "Botox — textura editorial" etc. (as fotos mostram procedimento com o médico); "Pôsteres Dr. Rafael Juliani" (é um retrato) | l.352–388, 466 | 🟠 | Alts descritivos do que a foto mostra. Logo do hero (decorativa, repete o nav) → `alt=""` | Sim | ⏳ |
-| C11 | `alt=""` atuais: fundo da Lifestyle e logos da marquee — corretos (decorativos) | l.412, 439–452 | — | Manter | — | ✅ (ok) |
-| C12 | Selos: alts ok, mas "Selo Do Not Obey" / "Selo Authentic" — confirmar se o texto do selo é esse | l.324–327 | 🟢 | Conferir com o arquivo | Sim | ⏳ |
+| # | Problema | Onde | Grav. | Correção | Status |
+|---|---|---|---|---|---|
+| C1 | Sem `meta description` | `<head>` | 🔴 | Adicionada | ✅ |
+| C2 | Sem OG / Twitter card | `<head>` | 🔴 | Completo, imagem `og-rafadoc.jpg` 1200×630 (retrato + logo, sem texto novo) | ✅ |
+| C3 | Sem `canonical` | `<head>` | 🟠 | `https://rafadoc.com.br/` | ✅ |
+| C4 | Sem favicon (404) / `theme-color` | `<head>` | 🟠 | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` (180), `#000000` | ✅ |
+| C5 | `<title>` sem especialidade/cidade | l.6 | 🟠 | Versão longa (decisão 5); cidade 📌 P14 | ✅ / 📌 |
+| C6 | Sem dados estruturados | — | 🟠 | JSON-LD `Physician`; CRM/RQE/endereço/horário comentados | ✅ / 📌 |
+| C7 | Sem `robots.txt` / `sitemap.xml` | raiz | 🟠 | Criados | ✅ |
+| C8 | Títulos lidos com palavras grudadas (`moldura.É`, `isn'ta`) | h1, h2 | 🟢 | `aria-label` com a frase inteira (h1, 5 h2, h3 e citação) | ✅ |
+| C9 | "Prova real" é `h3` sob a Autoridade | l.490 | 🟢 | Mantido (hierarquia válida) | ➖ |
+| C10 | Alts genéricos | l.352–388, 466 | 🟠 | Alts descrevem as fotos; logo do hero `alt=""` | ✅ |
+| C11 | `alt=""` decorativos | l.412, 439–452 | — | Corretos | ➖ |
+| C12 | Alts dos selos | l.324–327 | 🟢 | Conferidos com as imagens: "No filter. No bullshit.", "Do Not Obey", "Authenticity", "Skin" | ✅ |
 
 ## D. Legal e saúde
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| D-1 | Rodapé sem nome completo + CRM + RQE + "Responsável técnico" (Res. CFM 2.336/2023) | l.549–561 | 🔴 | `Dr. Rafael Juliani · CRM [PLACEHOLDER] · RQE [PLACEHOLDER] · Responsável técnico` com o valor em comentário | Sim (estrutura) / 📌 dados | ⏳ |
-| D-2 | Palavra "especialista": **não aparece** no site | — | — | Nada a fazer; manter assim até haver RQE | — | ✅ (ok) |
-| D-3 | "Botox" (marca registrada) como título do card | l.349–356 | 🟠 | Ver **D1** | Não | ⚖️ |
-| D-4 | Sem política de privacidade | — | 🔴 | `privacidade.html` (LGPD; cita GA4, Meta Pixel, WhatsApp; controlador/e-mail placeholder) + link no rodapé | Sim | ⏳ |
-| D-5 | Sem banner de cookies / consentimento | — | 🔴 | Banner leve na identidade (preto/creme/vermelho), Aceitar/Recusar, escolha em `localStorage` com try/catch; GA4/Pixel só após aceite | Sim (elemento novo, mas exigido) | ⏳ |
-| D-6 | **Frases em risco** (promessa de resultado / superlativo) — listadas, **não reescritas**: | | 🟠 | Revisar com o Rafa | Não | ⚖️ |
-| | · "resultado que parece você num bom dia" | l.315 | | promessa de resultado | | |
-| | · "Pele nova na superfície. Renovação sem drama." (Peelings) | l.374 | | promessa de resultado | | |
-| | · "Textura que responde." (Microagulhamento) | l.383 | | promessa de resultado | | |
-| | · "Firmeza e definição, com tecnologia que vai fundo." (Ultrassom MPT) | l.392 | | promessa de resultado | | |
-| | · "Formação séria … técnica de sobra … Autoridade que não precisa gritar." | l.474–476 | | autopromoção/superlativo sem credencial à vista | | |
-| | · "Congelar a cara? Não aqui." (Botox) | l.356 | | comparação implícita com colegas | | |
-| | · "No filter. No bullshit." | l.202 | | decoro (ver D7) | | |
-| D-7 | Fotos com rosto de paciente durante procedimento | `serv1.png`, `serv2.png` | 🟠 | Ver **D8** / **P12** | Não | 📌 |
+| # | Problema | Onde | Grav. | Correção | Status |
+|---|---|---|---|---|---|
+| D-1 | Rodapé sem CRM/RQE/responsável técnico | l.549–561 | 🔴 | "Responsável técnico: Dr. Rafael Juliani" visível; CRM e RQE comentados, prontos para descomentar | ✅ / 📌 P1, P2 |
+| D-2 | "Especialista" | — | — | Não aparece | ➖ |
+| D-3 | "Botox" | l.355 | 🟠 | "Toxina botulínica" (decisão 1) | ✅ |
+| D-4 | Sem política de privacidade | — | 🔴 | `privacidade.html` (LGPD, GA4, Pixel, WhatsApp, bases legais, direitos) + links no rodapé | ✅ / 📌 P8 |
+| D-5 | Sem consentimento | — | 🔴 | Banner Aceitar/Recusar na identidade; `localStorage` com try/catch; GA4/Pixel só após aceite; "Preferências de cookies" no rodapé | ✅ |
+| D-6 | Frases em risco (promessa/superlativo) — **não reescritas**, aguardam a revisão de copy (decisão 3): | | 🟠 | | ⚖️ |
+| | · "resultado que parece você num bom dia" | l.315 | | promessa de resultado | |
+| | · "Pele nova na superfície. Renovação sem drama." | l.374 | | promessa de resultado | |
+| | · "Textura que responde." | l.383 | | promessa de resultado | |
+| | · "Firmeza e definição, com tecnologia que vai fundo." | l.392 | | promessa de resultado | |
+| | · "Formação séria … técnica de sobra … Autoridade que não precisa gritar." | l.474–476 | | autopromoção sem credencial à vista (P5 resolve) | |
+| | · "Congelar a cara? Não aqui." | l.356 | | comparação implícita com colegas | |
+| | · "No filter. No bullshit." | l.202 | | decoro | |
+| D-7 | Rosto de paciente nas fotos de serviço | `servico-1/2` | 🟠 | Ver N7 / P12 / decisão 10 | 📌 |
+| D-8 | *(novo)* Modais de serviço levam o aviso "Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa." | modais | 🟢 | Adicionado | ✅ |
 
 ## E. Textos de rascunho visíveis
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| E1 | "imagem real BEHANCE · candidata a teste" | l.468 | 🔴 | Remover (vira comentário) | Sim | ⏳ |
-| E2 | "PMMA não consta — rejeitado no posicionamento da marca." | l.395 | 🔴 | Remover (vira comentário) | Sim | ⏳ |
-| E3 | 3× "[ REEL 9:16 ] embed do Instagram (placeholder de vídeo)" + "@influencer — a confirmar" | l.494–508 | 🔴 | Ver **D2** (esconder a sub-seção) | Não | ⚖️ |
-| E4 | "Embeds reais entram na fase de conteúdo — pendente…" | l.516 | 🔴 | Remover (vira comentário) | Sim | ⏳ |
-| E5 | **(novo)** "[ confirmar número/dados — placeholder: 47 99192 0666 ]" logo abaixo do CTA final | l.541 | 🔴 | Remover (vira comentário) + **P6** | Sim | ⏳ |
-| E6 | "Wireframe v1 — conteúdo e dados de contato são placeholder, a confirmar." | l.559 | 🔴 | Trocar por "© 2026 Rafa Doc." + linha do CRM (D-1) | Sim | ⏳ |
-| E7 | Comentário no `<head>` "WIREFRAME v1 (baixa-média fidelidade)…" (visível no código-fonte) | l.8–18 | 🟠 | Reescrever como cabeçalho neutro | Sim | ⏳ |
-| E8 | E-mail `contato@rafadoc.com.br` | l.554 | 🟠 | Ver **D10** / **P7** | Não | ⚖️ |
-| E9 | CSS morto de wireframe (`.ph`, `.duotone-hint`, `background-size:170%` sem imagem) | l.70–82, 257 | 🟢 | Remover se D2 aprovado (`.ph` ainda usado nos reels) | Sim (parcial) | ⏳ |
+| # | Texto | Onde | Grav. | Correção | Status |
+|---|---|---|---|---|---|
+| E1 | "imagem real BEHANCE · candidata a teste" | l.468 | 🔴 | Removido | ✅ |
+| E2 | "PMMA não consta — rejeitado…" | l.395 | 🔴 | Virou comentário | ✅ |
+| E3 | Reels "[ REEL 9:16 ]…" + "@influencer — a confirmar" | l.494–508 | 🔴 | Mantidos (decisão 2) | ⚖️ N3 |
+| E4 | "Embeds reais entram na fase de conteúdo…" | l.516 | 🔴 | Virou comentário | ✅ |
+| E5 | "[ confirmar número/dados — placeholder: 47 99192 0666 ]" | l.541 | 🔴 | Virou comentário | ✅ / 📌 P6 |
+| E6 | "Wireframe v1 — …" no rodapé | l.559 | 🔴 | Trocado pela linha legal + © 2026 Rafa Doc. | ✅ |
+| E7 | Comentário "WIREFRAME v1" no `<head>` | l.8–18 | 🟠 | Reescrito | ✅ |
+| E8 | E-mail | l.554 | 🟠 | Mantido (decisão 4) | 📌 P7 |
+| E9 | CSS morto do wireframe | l.70–82, 257 | 🟢 | `.duotone-hint` e `background-size` órfão removidos; `.ph` fica (reels) | ✅ |
 
 ## F. Acessibilidade e motion
 
-| # | Problema | Onde | Gravidade | Correção proposta | Segura sozinha? | Status |
-|---|---|---|---|---|---|---|
-| F1 | Contraste: latte sobre vermelho 4,26:1 | l.174, 211 | 🟠 | Ver **D4** | Não | ⚖️ |
-| F2 | Contraste: `text-black/40` sobre creme 2,82:1; `text-latte/30` no rodapé 2,38:1 (as duas linhas do rodapé/notas somem com E2/E4/E6) | l.395, 516, 558 | 🟠 | Some com E; o restante entra em **D5** | Parcial | ⏳ |
-| F3 | Texto sobre vídeo do hero: overlay preto/vermelho 74–92% garante contraste — ok no teste | l.193–194 | — | Manter | — | ✅ (ok) |
-| F4 | Sem estilo de foco visível próprio (o anel padrão some no botão vermelho/preto) | global | 🟠 | `:focus-visible { outline: 2px solid #FFB600; outline-offset: 3px }` — só aparece no teclado | Sim | ⏳ |
-| F5 | `prefers-reduced-motion`: marquee, reveals, hero e pin já cobertos ✓. Falta: `scroll-behavior:smooth`, zoom no hover dos selos/cards, autoplay dos vídeos | l.61, 324–327, 352… | 🟢 | Desligar smooth scroll e hover-zoom; pausar vídeos (mostrar poster) | Sim | ⏳ |
-| F6 | Vídeos decorativos sem `aria-hidden="true"`; `#skin-circle` tem `role="img"` com label "(vídeo)" | l.187, 255–262 | 🟢 | `aria-hidden` nos `<video>`; label "Pele em macro" | Sim | ⏳ |
-| F7 | `#skin-circle` menor que o original após troca imagem → vídeo. Causa provável: (1) **máscara radial aplicada duas vezes** (no `div` e no `video`), o que encolhe o disco visível; (2) a imagem antiga tinha `background-size:170%` (zoom) e o vídeo está em 100% | l.255–267 | 🟠 | Manter só a máscara do `div` e aplicar `scale(1.7)` no vídeo (overflow oculto). A animação de scroll não muda. Validar por screenshot lado a lado com o poster | Sim, com comparação visual | ⏳ |
-| F8 | Pin de 300vh: desligado <1024px ✓ (celular empilha). Link "Diferenciais" do menu cai no início do pin | l.144, 168–169 | 🟠 | Ver **D9** | Parcial | ⚖️ |
-| F9 | Menu de navegação some no mobile (`hidden md:flex`) — só fica o botão WhatsApp | l.167 | 🟢 | Aceitável para LP de página única; registrar | — | — |
-| F10 | Marquee `role="marquee"` com label — ok | l.434 | — | Manter | — | ✅ (ok) |
-
-## G. Itens que os concorrentes têm (preparar sem conteúdo inventado)
-
-| # | Item | Gravidade | Proposta | Segura sozinha? | Status |
+| # | Problema | Onde | Grav. | Correção | Status |
 |---|---|---|---|---|---|
-| G1 | **Onde atende** (endereço, bairro, mapa `loading="lazy"`, horário, "atendimento particular") antes do CTA final | 🟠 | Bloco **oculto** (`hidden`) já estilizado + placeholders comentados. Só aparece quando houver P3/P4 | Sim (oculto) | ⏳ |
-| G2 | **Formação** (3–5 linhas) na Autoridade | 🟠 | Lista oculta + placeholders (P5) | Sim (oculto) | ⏳ |
-| G3 | **Perguntas frequentes** com `<details>` (4 perguntas) | 🟢 | Bloco oculto; perguntas com texto placeholder comentado (P10) | Sim (oculto) | ⏳ |
-| G4 | Blog, chatbot, lista de tecnologias | — | Backlog. Não fazer | — | — |
+| F1 | Creme sobre vermelho 4,26:1 nos botões | l.174, 211 | 🟠 | Texto preto (decisão 8) | ✅ |
+| F2 | `/40`, `/50`, `/30` com contraste baixo | l.395, 516, 558, reels | 🟠 | Saíram com E ou subiram para `/60` | ✅ |
+| F3 | Texto sobre o vídeo do hero | l.193 | — | Overlay garante contraste | ➖ |
+| F4 | Sem foco visível próprio | global | 🟠 | `:focus-visible` amarelo (preto sobre vermelho) | ✅ |
+| F5 | Reduced-motion incompleto | l.61, hovers, vídeos | 🟢 | Smooth scroll, hover-zoom e vídeo do hero desligados | ✅ |
+| F6 | Vídeos sem `aria-hidden` | l.187, 261 | 🟢 | Adicionado; label do círculo sem "(vídeo)" | ✅ |
+| F7 | `#skin-circle` menor que o original | l.255–267 | 🟠 | Causa: máscara duplicada + perda do zoom de 170%. Máscara só no container + `scale(1.7)` no vídeo. Animação inalterada | ✅ |
+| F8 | Link "Diferenciais" caía na Filosofia | l.168 | 🟠 | No desktop rola até 62% do trilho (cards visíveis); no celular, âncora normal | ✅ |
+| F9 | Menu some no celular | l.167 | 🟢 | Aceitável em página única | ➖ |
+| F10 | Marquee | l.434 | — | Ok | ➖ |
+| F11 | *(novo)* Kickers vermelhos pequenos sobre creme 4,25:1; creme sobre o vermelho do CTA final ≈4,3:1 | kickers, `#contato` | 🟢 | Ver N2 | ⚖️ |
+| F12 | Pin de 300vh no iOS Safari | — | 🟠 | Já desligado <1024px; iPad deitado/desktop precisa de teste real | 📌 Eddi |
+
+## G. Itens dos concorrentes
+
+| # | Item | Status |
+|---|---|---|
+| G1 | **Onde atende** (endereço, bairro, horário, particular, mapa `loading="lazy"`) antes do CTA final | ✅ estrutura pronta, `hidden` até P3/P4 |
+| G2 | **Formação** na Autoridade | ✅ lista pronta, `hidden` até P5 |
+| G3 | **Perguntas frequentes** com `<details>` (4 perguntas) | ✅ estrutura pronta, `hidden` até P10 |
+| G4 | Blog, chatbot, lista de tecnologias | ➖ backlog |
 
 ---
 
-## Ferramentas para a Etapa 2
+## Como manter
 
-- `ffmpeg`/`ffprobe` não estão no sistema: uso binários estáticos via npm (`ffmpeg-static`) fora do repositório.
-- WebP/AVIF: Pillow (Python) já instalado.
-- Tailwind CLI v3 via `npx` (mesmo motor do CDN 3.4.17 → mesmas classes).
-- Lighthouse 12 via `npx` + Chrome local.
+- **CSS:** depois de mexer em classes do Tailwind no HTML, rodar `npm install` (uma vez) e `npm run build:css`, e
+  commitar `assets/css/site.css`. O Cloudflare **não** precisa de build command.
+- **Originais pesados:** em `_fontes/` (local, fora do git) e no histórico do git (`be2c99c`).
+- **Publicar seções ocultas:** remover o atributo `hidden` de `#onde`, `#faq` e da lista de formação depois de
+  preencher os placeholders.
+- **GA4/Pixel:** trocar `G-XXXXXXX` e `PIXEL_ID` em `assets/js/medicao.js`. Enquanto forem placeholders, nada carrega.
