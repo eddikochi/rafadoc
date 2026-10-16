@@ -541,6 +541,13 @@
               não padrão. Cada rosto é tratado como caso único — técnica de sobra,
               zero fórmula pronta. Autoridade que não precisa gritar.
             </p>
+            <!-- FORMAÇÃO — oculta até o Rafa enviar as credenciais reais (3 a 5 linhas). Para publicar: remover "hidden".
+                 [PLACEHOLDER: FORMAÇÃO] graduação (instituição, ano) · residência/pós · sociedades. Nada inventado. -->
+            <ul hidden class="mt-8 border-t border-black/15 font-gothic text-sm text-black/70">
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Graduação em Medicina — instituição] --></li>
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Residência / pós-graduação] --></li>
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Sociedade(s) / certificações] --></li>
+            </ul>
           </div>
         </div>
 
@@ -580,6 +587,59 @@
           -->
         </div>
         <!-- [PENDENTE] Embeds reais entram na fase de conteúdo: links dos reels + direitos de uso. -->
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ONDE ATENDE — OCULTA até P3/P4 (endereço, bairro, cidade, mapa, horário). Para publicar: remover "hidden".
+         Concorrentes: 5/5 mostram endereço, mapa ou horário.
+    ========================================================== -->
+    <section id="onde" hidden class="relative z-30 bg-black text-latte py-24 sm:py-32 border-t border-white/10" aria-labelledby="onde-t">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="kicker font-gothic text-selective mb-6">Onde atende</p>
+          <h2 id="onde-t" class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl leading-[0.95] mb-8">
+            <!-- [PLACEHOLDER: BAIRRO / CIDADE] -->
+          </h2>
+          <dl class="font-gothic text-latte/80 space-y-5">
+            <div><dt class="kicker text-latte/60 mb-1">Endereço</dt><dd><!-- [PLACEHOLDER: ENDEREÇO completo] --></dd></div>
+            <div><dt class="kicker text-latte/60 mb-1">Horário</dt><dd><!-- [PLACEHOLDER: HORÁRIO] --></dd></div>
+            <div><dt class="kicker text-latte/60 mb-1">Atendimento</dt><dd><!-- [PLACEHOLDER: "Particular" — confirmar] --></dd></div>
+          </dl>
+        </div>
+        <div class="aspect-[4/3] bg-white/5 border border-white/10">
+          <!-- [PLACEHOLDER: MAPA] iframe do Google Maps (Compartilhar → Incorporar mapa):
+          <iframe src="https://www.google.com/maps/embed?pb=…" title="Mapa do consultório" class="w-full h-full border-0"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PERGUNTAS FREQUENTES — OCULTA até o Rafa responder (P10). Para publicar: remover "hidden" e preencher as respostas.
+    ========================================================== -->
+    <section id="faq" hidden class="relative z-30 bg-latte text-black py-24 sm:py-32" aria-labelledby="faq-t">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8">
+        <p class="kicker font-gothic text-vivid mb-6">Perguntas</p>
+        <h2 id="faq-t" class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl leading-[0.95] mb-12">Antes de mandar mensagem.</h2>
+        <div class="border-t border-black/15 font-gothic">
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Como é a primeira consulta?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Quanto tempo dura?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">O atendimento é particular?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Que cuidados tenho depois?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+        </div>
       </div>
     </section>
 
