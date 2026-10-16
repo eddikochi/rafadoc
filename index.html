@@ -52,6 +52,20 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
+    /* Área de toque ≥44px sem mudar o desenho do link/botão (pseudo-elemento invisível) */
+    .hit { position: relative; }
+    .hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+
+    /* Modal dos serviços */
+    .svc-dialog { padding: 0; border: 0; background: transparent; color: inherit; width: 100%;
+                  max-width: min(860px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); }
+    .svc-dialog .svc-panel { max-height: calc(100dvh - 32px); overflow-y: auto; }
+    .svc-dialog::backdrop { background: rgba(0,0,0,.78); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+    .svc-dialog[open] { animation: svcIn .35s cubic-bezier(.22,.61,.36,1); }
+    @keyframes svcIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    html.svc-lock { overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) { .svc-dialog[open] { animation: none; } }
+
     /* Placeholder de imagem (bloco tracejado bem marcado) */
     .ph {
       border: 2px dashed currentColor;
@@ -146,18 +160,18 @@
   ========================================================== -->
   <header class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
     <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-      <a href="#hero" class="flex items-center gap-2">
+      <a href="#hero" class="hit flex items-center gap-2">
         <img src="assets/logo/logo-doc-branco.svg" alt="Rafa Doc" width="1080" height="1080" class="h-7 w-auto" />
       </a>
       <ul class="hidden md:flex items-center gap-8 font-gothic text-xs uppercase tracking-[0.18em] text-latte/80">
-        <li><a href="#filosofia" class="hover:text-vivid transition-colors">Filosofia</a></li>
-        <li><a href="#diferenciais" class="hover:text-vivid transition-colors">Diferenciais</a></li>
-        <li><a href="#servicos" class="hover:text-vivid transition-colors">Serviços</a></li>
-        <li><a href="#lifestyle" class="hover:text-vivid transition-colors">Lifestyle</a></li>
-        <li><a href="#prova" class="hover:text-vivid transition-colors">Autoridade</a></li>
+        <li><a href="#filosofia" class="hit hover:text-vivid transition-colors">Filosofia</a></li>
+        <li><a href="#diferenciais" class="hit hover:text-vivid transition-colors">Diferenciais</a></li>
+        <li><a href="#servicos" class="hit hover:text-vivid transition-colors">Serviços</a></li>
+        <li><a href="#lifestyle" class="hit hover:text-vivid transition-colors">Lifestyle</a></li>
+        <li><a href="#prova" class="hit hover:text-vivid transition-colors">Autoridade</a></li>
       </ul>
-      <a href="#contato"
-         class="font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-latte px-4 py-2 rounded-sm hover:bg-selective hover:text-black transition-colors">
+      <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="nav" target="_blank" rel="noopener"
+         class="hit font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-latte px-4 py-2 rounded-sm hover:bg-selective hover:text-black transition-colors">
         WhatsApp
       </a>
     </nav>
@@ -195,7 +209,7 @@
           Ciência e arte a favor da sua identidade.
         </p>
         <div class="mt-10 flex flex-wrap items-center gap-4 hero-rise" style="animation-delay:.6s">
-          <a href="#contato"
+          <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="hero" target="_blank" rel="noopener"
              class="font-gothic uppercase tracking-[0.18em] text-sm bg-vivid text-latte px-7 py-4 rounded-sm hover:bg-selective hover:text-black transition-colors">
             Falar no WhatsApp
           </a>
@@ -332,51 +346,71 @@
         </p>
 
         <div class="grid grid-cols-2 lg:grid-cols-5 gap-5 sr-stagger">
-          <!-- card model: foto/textura no topo (placeholder) + nome Amador + linha sensorial -->
-          <!-- Botox -->
-          <article class="group">
+          <!-- card: foto + nome + linha sensorial + "Saber mais" (abre modal com descrição e CTA do WhatsApp) -->
+          <!-- Toxina botulínica -->
+          <!-- [IMAGEM IA PENDENTE: assets/img/servico-toxina-botulinica-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Botox — textura editorial" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Botox</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Toxina botulínica</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Congelar a cara? Não aqui. A expressão é sua.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-toxina-botulinica" aria-haspopup="dialog" aria-label="Saber mais sobre toxina botulínica"></button>
           </article>
           <!-- Preenchimento -->
-          <article class="group">
+          <!-- [IMAGEM IA PENDENTE: assets/img/servico-preenchimento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Preenchimento — textura editorial" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
             <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Preenchimento</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Volume e contorno com leitura individual — nada de molde universal.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-preenchimento" aria-haspopup="dialog" aria-label="Saber mais sobre preenchimento"></button>
           </article>
           <!-- Peelings -->
-          <article class="group">
+          <!-- [IMAGEM IA PENDENTE: assets/img/servico-peelings-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Peelings — textura editorial" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
             <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Peelings</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Pele nova na superfície. Renovação sem drama.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-peelings" aria-haspopup="dialog" aria-label="Saber mais sobre peelings"></button>
           </article>
           <!-- Microagulhamento -->
-          <article class="group">
+          <!-- [IMAGEM IA PENDENTE: assets/img/servico-microagulhamento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Microagulhamento — textura editorial" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
             <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Microagulhamento</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Estímulo de dentro pra fora. Textura que responde.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-microagulhamento" aria-haspopup="dialog" aria-label="Saber mais sobre microagulhamento"></button>
           </article>
           <!-- Ultrassom MPT -->
-          <article class="group">
+          <!-- [IMAGEM IA PENDENTE: assets/img/servico-ultrassom-mpt-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Ultrassom MPT — textura editorial" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
             <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Ultrassom MPT</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Firmeza e definição, com tecnologia que vai fundo.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-ultrassom-mpt" aria-haspopup="dialog" aria-label="Saber mais sobre ultrassom MPT"></button>
           </article>
         </div>
         <p class="font-gothic text-black/40 text-xs mt-8">PMMA não consta — rejeitado no posicionamento da marca.</p>
@@ -520,7 +554,7 @@
         </p>
 
         <div class="sr" style="transition-delay:.3s">
-          <a href="https://wa.me/5547991920666"
+          <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20conversar." data-cta="final" target="_blank" rel="noopener"
              class="inline-flex items-center gap-3 font-gothic uppercase tracking-[0.18em] text-sm sm:text-base bg-black text-latte px-10 py-5 rounded-sm hover:bg-latte hover:text-black transition-colors">
             Falar no WhatsApp →
           </a>
@@ -537,15 +571,134 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
       <img src="assets/logo/logo-doc-amarelo.svg" alt="Rafa Doc" width="1080" height="1080" class="h-9 w-auto" loading="lazy" />
       <div class="font-gothic text-sm space-y-1 sm:text-right">
-        <p>WhatsApp: <a href="https://wa.me/5547991920666" class="hover:text-selective">47 99192 0666</a></p>
-        <p>E-mail: <a href="mailto:contato@rafadoc.com.br" class="hover:text-selective">contato@rafadoc.com.br</a></p>
-        <p>Instagram: <a href="https://instagram.com/docrafa" class="hover:text-selective">@docrafa</a></p>
+        <p>WhatsApp: <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site." data-cta="rodape" target="_blank" rel="noopener" class="hit hover:text-selective">47 99192 0666</a></p>
+        <p>E-mail: <a href="mailto:contato@rafadoc.com.br" class="hit hover:text-selective">contato@rafadoc.com.br</a></p>
+        <p>Instagram: <a href="https://instagram.com/docrafa" target="_blank" rel="noopener" class="hit hover:text-selective">@docrafa</a></p>
       </div>
     </div>
     <p class="max-w-7xl mx-auto px-5 sm:px-8 mt-8 font-gothic text-[11px] text-latte/30">
       Wireframe v1 — conteúdo e dados de contato são placeholder, a confirmar. © Rafa Doc.
     </p>
   </footer>
+
+  <!-- =========================================================
+       MODAIS DOS SERVIÇOS — <dialog> nativo (foco preso, Esc fecha). Abertos pelos cards de Serviços.
+  ========================================================== -->
+  <dialog id="svc-toxina-botulinica" class="svc-dialog" aria-labelledby="svc-toxina-botulinica-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 01</p>
+        <h3 id="svc-toxina-botulinica-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Toxina botulínica</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Relaxa a força de músculos específicos da expressão, aplicada em pontos escolhidos para o seu rosto. A ideia não é apagar o que você sente: é dosar onde faz sentido e deixar o resto falar.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20toxina%20botul%C3%ADnica." data-cta="servico-toxina-botulinica" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-preenchimento" class="svc-dialog" aria-labelledby="svc-preenchimento-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 02</p>
+        <h3 id="svc-preenchimento-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Preenchimento</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Preenchedor injetável em pontos estratégicos para trabalhar volume, contorno e sustentação. Antes de qualquer seringa, leitura de proporção: o desenho parte do seu rosto, não de um molde.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20preenchimento." data-cta="servico-preenchimento" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-peelings" class="svc-dialog" aria-labelledby="svc-peelings-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 03</p>
+        <h3 id="svc-peelings-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Peelings</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Ácidos aplicados na pele em concentração e camadas definidas para renovar a superfície. Ativo, intensidade e preparo dependem da sua pele, da sua rotina e da época do ano.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20peelings." data-cta="servico-peelings" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-microagulhamento" class="svc-dialog" aria-labelledby="svc-microagulhamento-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 04</p>
+        <h3 id="svc-microagulhamento-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Microagulhamento</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Microperfurações controladas que estimulam a produção de colágeno — o corpo trabalhando a favor da própria textura. Profundidade e número de sessões saem da avaliação.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20microagulhamento." data-cta="servico-microagulhamento" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-ultrassom-mpt" class="svc-dialog" aria-labelledby="svc-ultrassom-mpt-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 05</p>
+        <h3 id="svc-ultrassom-mpt-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Ultrassom MPT</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Ultrassom microfocado que entrega energia em camadas profundas da pele, sem cortes, para estimular firmeza e sustentação. O protocolo é definido depois da avaliação.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20ultrassom%20MPT." data-cta="servico-ultrassom-mpt" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modais dos serviços: abre pelo card, fecha no ×, no Esc (nativo) ou clicando fora; trava o scroll da página enquanto aberto -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      document.querySelectorAll('.svc-open').forEach(function (btn) {
+        var dlg = document.getElementById(btn.getAttribute('data-svc'));
+        if (!dlg || typeof dlg.showModal !== 'function') return;
+        btn.addEventListener('click', function () { dlg.showModal(); root.classList.add('svc-lock'); });
+        dlg.addEventListener('close', function () { root.classList.remove('svc-lock'); });
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+        dlg.querySelectorAll('[data-close]').forEach(function (c) { c.addEventListener('click', function () { dlg.close(); }); });
+      });
+    })();
+  </script>
 
   <!-- Scroll reveal geral (Filosofia, Serviços, Lifestyle, Autoridade, CTA): fade-in + leve subida; cada elemento dispara 1x ao entrar no viewport -->
   <script>
@@ -648,5 +801,7 @@
       update();
     })();
   </script>
+  <!-- Medição (GA4 + Meta Pixel) — só carrega após consentimento -->
+  <script src="assets/js/medicao.js" defer></script>
 </body>
 </html>
