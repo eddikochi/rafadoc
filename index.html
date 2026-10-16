@@ -50,15 +50,10 @@
   </script>
 
   <!--
-    ============================================================
-    RAFA DOC — Landing page · WIREFRAME v1 (baixa-média fidelidade)
-    Objetivo: ver o FLUXO da página inteira (7 seções do sitemap).
-    Direção: ID-Visual 2025 — OUSADA, editorial, alto contraste.
-    Paleta: Vivid Red #ED0A15 · Selective Yellow #FFB600 · Black #000 · Cosmic Latte #FFF8E9
-    Fontes: Amador (display, self-hosted) + Special Gothic (corpo/UI, Google Fonts CDN)
-    Imagens reais (candidatas a teste) embutidas em Lifestyle e Social Proof.
-    Demais imagens = placeholders tracejados com descrição do que vai ali.
-    ============================================================
+    Rafa Doc — landing page (página única).
+    Identidade: ID-Visual 2025 — Vivid Red #ED0A15 · Selective Yellow #FFB600 · Black #000 · Cosmic Latte #FFF8E9.
+    Fontes: Amador (display, self-hosted, só letras sem acento) + Special Gothic (corpo/UI, Google Fonts).
+    CSS: Tailwind compilado (npm run build:css). Medição e cookies: assets/js/.
   -->
 
   <!-- Tailwind compilado (Tailwind CLI v3 → assets/css/site.css; config em tailwind.config.js). Não usar o CDN em produção. -->
@@ -121,8 +116,6 @@
     .kicker { letter-spacing: .32em; text-transform: uppercase; font-size: .72rem; }
     section { scroll-margin-top: 5rem; }
 
-    /* duotone vermelho fake p/ placeholders de foto */
-    .duotone-hint { background: linear-gradient(135deg, #ED0A15 0%, #7a0008 100%); }
 
     /* Marquee / ticker — tagline em loop sem emenda.
        Conteúdo duplicado em 2 grupos idênticos; translateX(-50%) avança exatamente 1 grupo → reinício invisível. */
@@ -299,8 +292,7 @@
         <div class="flex justify-center sr" style="transition-delay:.15s">
           <div id="skin-circle" class="w-[70vw] max-w-xl aspect-square"
                role="img" aria-label="Pele em macro — matéria viva (vídeo)"
-               style="background-size:170%; background-position:center;
-                      transform-origin:center; will-change:transform;
+               style="transform-origin:center; will-change:transform;
                       -webkit-mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);
                       mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);">
             <video id="skin-video" class="w-full h-full object-cover block"
@@ -457,7 +449,7 @@
             <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-ultrassom-mpt" aria-haspopup="dialog" aria-label="Saber mais sobre ultrassom MPT"></button>
           </article>
         </div>
-        <p class="font-gothic text-black/40 text-xs mt-8">PMMA não consta — rejeitado no posicionamento da marca.</p>
+        <!-- PMMA não consta — rejeitado no posicionamento da marca. -->
       </div>
     </section>
 
@@ -530,7 +522,6 @@
           <div>
             <img src="assets/img/rafael-juliani-1280.webp" srcset="assets/img/rafael-juliani-640.webp 640w, assets/img/rafael-juliani-1280.webp 1280w, assets/img/rafael-juliani-1920.webp 1920w" sizes="(min-width: 1024px) 600px, 100vw" width="1920" height="1080" alt="Dr. Rafael Juliani de jaleco, gravata e estetoscópio, em retrato com luz vermelha"
                  class="w-full h-auto border border-black/10 shadow-2xl" loading="lazy" />
-            <p class="font-gothic text-black/40 text-xs mt-3">imagem real BEHANCE · candidata a teste</p>
           </div>
           <div>
             <p class="kicker font-gothic text-vivid mb-6">Autoridade</p>
@@ -578,7 +569,7 @@
           </figure>
           -->
         </div>
-        <p class="font-gothic text-black/40 text-xs mt-6">Embeds reais entram na fase de conteúdo — pendente: links dos reels + direitos de uso.</p>
+        <!-- [PENDENTE] Embeds reais entram na fase de conteúdo: links dos reels + direitos de uso. -->
       </div>
     </section>
 
@@ -603,7 +594,7 @@
             Falar no WhatsApp →
           </a>
         </div>
-        <p class="font-gothic text-latte/50 text-xs mt-4">[ confirmar número/dados — placeholder: 47 99192 0666 ]</p>
+        <!-- [PENDENTE] Confirmar o número do WhatsApp: 47 99192 0666 -->
       </div>
     </section>
   </main>
