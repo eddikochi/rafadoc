@@ -1,7 +1,7 @@
 /** Tailwind v3 — mesma config que rodava no CDN (cdn.tailwindcss.com 3.4.17).
- *  Build: npm run build:css  →  assets/css/site.css (minificado, só as classes usadas). */
+ *  Build: npm run build:css  →  public/assets/css/site.css (minificado, só as classes usadas). */
 module.exports = {
-  content: ['./index.html', './privacidade.html'],
+  content: ['./public/index.html', './public/privacidade.html', './public/assets/js/*.js'],
   theme: {
     extend: {
       colors: {

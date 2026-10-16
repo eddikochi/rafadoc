@@ -29,17 +29,23 @@ Commits: `A` 68451ae · `B` 4c0b281 · `C` 08f962d · `D` 93f5781 · `E` caa9206
 | 10 | Imagens de serviço por IA | 📌 Não consigo gerar imagens aqui. Prompts prontos em `PROMPTS-IMAGENS-SERVICOS.md`; o HTML marca onde cada uma entra (`[IMAGEM IA PENDENTE]`) |
 | 11 | Pin Filosofia → Diferenciais | ✅ Link "Diferenciais" do menu agora para nos cards. 📌 Teste em iPhone/iPad real fica com você |
 
-### Novas — precisam de resposta
+### Rodada 2 (16/10) — decididas e aplicadas
 
-| # | Decisão | Prós | Contras |
+| # | Decisão | Resultado |
+|---|---|---|
+| N1 | Arquivos internos fora do acesso público | ✅ Site movido para `public/`; documentos em `_interno/`. **Configurar no Cloudflare Pages: Build output directory = `public`** (ver `README.md`) |
+| N2 | Kickers vermelhos sobre creme / creme sobre o vermelho do CTA | ➖ Mantidos (decisão do Eddi) |
+| N3 | Prova real | ✅ Espaço mantido e pronto para receber os vídeos: basta preencher `REELS` em `public/assets/js/prova.js`. **Novo carrossel "Direto do direct"** para prints de prova social (arrasta no celular, setas no desktop, clique amplia) — lista `PRINTS` no mesmo arquivo |
+| N7 | Fotos com rosto de paciente | ✅ **Saíram do site.** Entraram imagens provisórias da própria marca, sem rosto (rosa, textura de pele, sérum), uma por serviço, até chegarem as de IA |
+
+### Ainda abertas
+
+| # | Ponto | Prós | Contras |
 |---|---|---|---|
-| N1 | **Arquivos internos ficariam públicos.** O Cloudflare Pages publica tudo o que está no repositório: `rafadoc.com.br/AUDITORIA.md` (com riscos legais e pendências), `PROMPTS-IMAGENS-SERVICOS.md`, `package.json`. Proposta: antes do merge, tirar os dois `.md` da branch (ficam no PR e na pasta local) | Nada interno exposto | Perde o histórico do relatório no repo (fica no PR) |
-| N2 | **Textos vermelhos pequenos sobre creme** (kickers "Filosofia", "Experiências", "Autoridade", "Prova real") = 4,25:1, e **texto creme sobre o vermelho do CTA final** ≈ 4,3:1. Ficam um pouco abaixo do AA (4,5). O Lighthouse deu 100 porque eles estão em fade no momento do teste | Manter: preserva o vermelho de marca | Alternativa: texto preto nesses pontos (muda a assinatura visual). Recomendo manter |
-| N3 | **"Prova real" visível com placeholders** ("[ REEL 9:16 ]…", "@influencer — a confirmar"). Pela decisão 2 ficou, mas o critério de pronto diz "nenhum texto de rascunho visível" | Seção pronta para receber os reels | Se os vídeos não chegarem até o lançamento, esconder com `hidden` (1 atributo) |
-| N4 | **"Conhecer a filosofia"** (botão secundário do hero) continua rolando para a Filosofia | Dois botões de WhatsApp lado a lado ficariam redundantes | Se "todo botão" incluir esse também, é uma linha |
-| N5 | **LCP local = 2,6 s** (meta 2,5 s). O que segura é a troca para Special Gothic, que vem do Google em 2 servidores externos. No Cloudflare (brotli, HTTP/3) deve passar | Manter o CDN do Google, como diz o CLAUDE.md | Se não passar no ar: hospedar a fonte no próprio site (licença OFL, permitido) — ganho estimado de 0,3–0,5 s |
-| N6 | **Textos novos dos modais de serviço** (5 descrições + "Tudo começa numa conversa…" + aviso "Procedimento médico…") seguem a skill `rafadoc-copy` e não prometem resultado, mas são copy nova | — | Validar com o Rafa junto com a revisão de copy |
-| N7 | **Fotos atuais dos serviços** continuam no ar até chegarem as de IA, ainda com rosto de paciente | Página não fica sem imagem | Precisa do termo de uso de imagem (P12) **ou** trocar antes do lançamento |
+| N4 | "Conhecer a filosofia" continua rolando para a Filosofia | Evita 2 botões de WhatsApp lado a lado | Se "todo botão" incluir esse, é uma linha |
+| N5 | LCP local 2,6–2,7 s (meta 2,5 s) — troca para a fonte Special Gothic do Google | Manter o CDN do Google (CLAUDE.md) | Se não passar no ar: hospedar a fonte no próprio site |
+| N6 | Textos novos dos modais de serviço | Sem promessa de resultado | Validar com o Rafa na revisão de copy |
+| N8 | Placeholders visíveis de reels e prints ("[ REEL 9:16 ]…", "[ PRINT ]…") até chegar o conteúdo | Espaço reservado, como decidido | Se o lançamento vier antes do conteúdo, esconder a sub-seção com `hidden` |
 
 ---
 
@@ -59,8 +65,9 @@ Tudo está como placeholder comentado no HTML (`<!-- [PLACEHOLDER: …] -->`). N
 | P8 | **Controlador (LGPD):** nome completo/razão social + CPF/CNPJ; encarregado, se houver | `privacidade.html` | 🟠 |
 | P9 | **ID do GA4** (`G-XXXXXXX`) e **ID do Meta Pixel** (`PIXEL_ID`) | `assets/js/medicao.js` (sem IDs, nada carrega — sem erro) | 🟢 |
 | P10 | **FAQ** — respostas das 4 perguntas | Seção FAQ (oculta) | 🟢 |
-| P11 | **Reels de Prova real**: links + autorização das pessoas | Seção Prova real | 🟠 (ver N3) |
-| P12 | **Termo de uso de imagem** das pacientes em `servico-1/2` (ou trocar pelas de IA) | Cards e modais de serviço | 🟠 (ver N7) |
+| P11 | **Reels de Prova real**: arquivos de vídeo (9:16, MP4) + autorização das pessoas | Seção Prova real | 🟠 (ver N8) |
+| P12 | Imagens de IA dos 5 serviços (Lufe) — hoje há provisórias da marca, sem rosto | Cards e modais de serviço | 🟢 |
+| P15 | **Prints de prova social**: arquivos + autorização por escrito + nome, foto e telefone borrados | Carrossel "Direto do direct" | 🟠 |
 | P13 | **Instagram**: confirmar `@docrafa` | Rodapé, JSON-LD | 🟢 |
 | P14 | **Cidade** para o título e o OG | `<title>`, `og:title`, `twitter:title` | 🟢 |
 
@@ -73,11 +80,11 @@ são automáticas, então os números no ar devem ficar iguais ou melhores).
 
 | Métrica | Antes | Depois | Meta |
 |---|---|---|---|
-| Performance | 69 | **97** | ≥80 ✅ |
+| Performance | 69 | **96–97** | ≥80 ✅ |
 | Acessibilidade | 95 | **100** | ≥90 ✅ |
 | Boas práticas | 96 | **100** | ≥90 ✅ |
 | SEO | 91 | **100** | ≥90 ✅ |
-| LCP | 59,9 s | **2,6 s** | <2,5 s ⚠️ (N5) |
+| LCP | 59,9 s | **2,6–2,7 s** | <2,5 s ⚠️ (N5) |
 | FCP | 3,1 s | **1,1 s** | — |
 | Speed Index | 3,4 s | **1,1 s** | — |
 | CLS | 0 | 0,002 | — |
@@ -88,7 +95,7 @@ são automáticas, então os números no ar devem ficar iguais ou melhores).
 | 1º carregamento — celular (Lighthouse) | **~43 MB** | **1,4 MB** (vídeo 720p 1,1 MB) |
 | 1º carregamento — desktop | ~38 MB | ~3,6 MB (vídeo 1080p 3,3 MB) |
 | Maior arquivo do deploy | 26,5 MiB (`Final_BG.mp4`, acima do limite) | **3,2 MiB** (`videos/final-bg.mp4`) ✅ |
-| Repositório publicado | 66,7 MiB, 29 arquivos | **5,2 MiB**, 41 arquivos |
+| Pasta publicada | 66,7 MiB, 29 arquivos (repo inteiro) | **5,6 MiB**, 40 arquivos (`public/`) |
 
 Outros testes:
 
@@ -107,6 +114,8 @@ Outros testes:
 - **`privacidade.html`, `robots.txt`, `sitemap.xml`:** respondem 200.
 - **Visual:** screenshots antes/depois em 375, 768 e 1280px. Mudanças visíveis: só as aprovadas (decisões 1, 6, 8, 9),
   os textos de rascunho que saíram (E), o rodapé legal e o banner de cookies (D).
+- **Prova social:** testada vazia (placeholders) e preenchida com dados fictícios (2 reels, 6 prints): reels tocam um
+  por vez; carrossel sem rolagem lateral da página, setas desabilitam nas pontas, teclado ← →, lightbox abre/fecha.
 - **Não testado:** iPhone/iPad real (Safari) — 📌 com o Eddi.
 
 ---
@@ -179,7 +188,7 @@ Outros testes:
 | | · "Formação séria … técnica de sobra … Autoridade que não precisa gritar." | l.474–476 | | autopromoção sem credencial à vista (P5 resolve) | |
 | | · "Congelar a cara? Não aqui." | l.356 | | comparação implícita com colegas | |
 | | · "No filter. No bullshit." | l.202 | | decoro | |
-| D-7 | Rosto de paciente nas fotos de serviço | `servico-1/2` | 🟠 | Ver N7 / P12 / decisão 10 | 📌 |
+| D-7 | Rosto de paciente nas fotos de serviço | `servico-1/2` | 🟠 | Substituídas por imagens da marca sem rosto (N7); originais em `_fontes/fotos-paciente/`, fora do git | ✅ |
 | D-8 | *(novo)* Modais de serviço levam o aviso "Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa." | modais | 🟢 | Adicionado | ✅ |
 
 ## E. Textos de rascunho visíveis
@@ -188,7 +197,7 @@ Outros testes:
 |---|---|---|---|---|---|
 | E1 | "imagem real BEHANCE · candidata a teste" | l.468 | 🔴 | Removido | ✅ |
 | E2 | "PMMA não consta — rejeitado…" | l.395 | 🔴 | Virou comentário | ✅ |
-| E3 | Reels "[ REEL 9:16 ]…" + "@influencer — a confirmar" | l.494–508 | 🔴 | Mantidos (decisão 2) | ⚖️ N3 |
+| E3 | Reels "[ REEL 9:16 ]…" + "@influencer — a confirmar" | l.494–508 | 🔴 | Mantidos como espaço reservado (decisões 2 e N3) | ⚖️ N8 |
 | E4 | "Embeds reais entram na fase de conteúdo…" | l.516 | 🔴 | Virou comentário | ✅ |
 | E5 | "[ confirmar número/dados — placeholder: 47 99192 0666 ]" | l.541 | 🔴 | Virou comentário | ✅ / 📌 P6 |
 | E6 | "Wireframe v1 — …" no rodapé | l.559 | 🔴 | Trocado pela linha legal + © 2026 Rafa Doc. | ✅ |
@@ -226,9 +235,11 @@ Outros testes:
 
 ## Como manter
 
-- **CSS:** depois de mexer em classes do Tailwind no HTML, rodar `npm install` (uma vez) e `npm run build:css`, e
-  commitar `assets/css/site.css`. O Cloudflare **não** precisa de build command.
+- **Deploy:** Cloudflare Pages com *Build output directory* = `public` e sem build command (ver `README.md`).
+- **CSS:** depois de mexer em classes do Tailwind, rodar `npm install` (uma vez) e `npm run build:css`, e
+  commitar `public/assets/css/site.css`.
 - **Originais pesados:** em `_fontes/` (local, fora do git) e no histórico do git (`be2c99c`).
 - **Publicar seções ocultas:** remover o atributo `hidden` de `#onde`, `#faq` e da lista de formação depois de
   preencher os placeholders.
-- **GA4/Pixel:** trocar `G-XXXXXXX` e `PIXEL_ID` em `assets/js/medicao.js`. Enquanto forem placeholders, nada carrega.
+- **Prova social:** listas `REELS` e `PRINTS` em `public/assets/js/prova.js`.
+- **GA4/Pixel:** trocar `G-XXXXXXX` e `PIXEL_ID` em `public/assets/js/medicao.js`. Enquanto forem placeholders, nada carrega.

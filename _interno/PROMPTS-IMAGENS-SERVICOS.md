@@ -44,7 +44,7 @@ energia.
 ## Entrega
 
 Entregar os arquivos em PNG/JPG com estes nomes. Eu converto para WebP (480 e 960 px) e troco no HTML: os pontos
-estão marcados com `[IMAGEM IA PENDENTE]` no `index.html`.
+estão marcados com `[IMAGEM PROVISÓRIA …]` no `public/index.html` (hoje há imagens provisórias da marca, sem rosto).
 
 | Serviço | Arquivo |
 |---|---|

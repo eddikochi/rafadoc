@@ -116,11 +116,16 @@
     html.svc-lock { overflow: hidden; }
     @media (prefers-reduced-motion: reduce) { .svc-dialog[open] { animation: none; } }
 
+    /* Carrossel de prints: barra de rolagem escondida (navega por arrasto, setas ou teclado) */
+    .prints-track { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .prints-track::-webkit-scrollbar { display: none; }
+    .print-dialog { max-width: min(560px, calc(100vw - 32px)); }
+
     /* Placeholder de imagem (bloco tracejado bem marcado) */
     .ph {
       border: 2px dashed currentColor;
       display: flex; align-items: center; justify-content: center;
-      text-align: center; opacity: .85;
+      text-align: center;
     }
     .ph span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; padding: 1.25rem; }
 
@@ -394,65 +399,65 @@
         <div class="grid grid-cols-2 lg:grid-cols-5 gap-5 sr-stagger">
           <!-- card: foto + nome + linha sensorial + "Saber mais" (abre modal com descrição e CTA do WhatsApp) -->
           <!-- Toxina botulínica -->
-          <!-- [IMAGEM IA PENDENTE: assets/img/servico-toxina-botulinica-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-toxina-botulinica-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
           <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-toxina-botulinica-480.webp" srcset="assets/img/servico-toxina-botulinica-480.webp 480w, assets/img/servico-toxina-botulinica-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Rosa vermelha sobre fundo vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Toxina botulínica</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Toxina botulínica</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Congelar a cara? Não aqui. A expressão é sua.</p>
             <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
             <!-- Card inteiro clicável: abre o modal do serviço -->
             <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-toxina-botulinica" aria-haspopup="dialog" aria-label="Saber mais sobre toxina botulínica"></button>
           </article>
           <!-- Preenchimento -->
-          <!-- [IMAGEM IA PENDENTE: assets/img/servico-preenchimento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-preenchimento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
           <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-preenchimento-480.webp" srcset="assets/img/servico-preenchimento-480.webp 480w, assets/img/servico-preenchimento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Textura de pele em macro, em círculo, sobre vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Preenchimento</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Preenchimento</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Volume e contorno com leitura individual — nada de molde universal.</p>
             <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
             <!-- Card inteiro clicável: abre o modal do serviço -->
             <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-preenchimento" aria-haspopup="dialog" aria-label="Saber mais sobre preenchimento"></button>
           </article>
           <!-- Peelings -->
-          <!-- [IMAGEM IA PENDENTE: assets/img/servico-peelings-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-peelings-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
           <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-peelings-480.webp" srcset="assets/img/servico-peelings-480.webp 480w, assets/img/servico-peelings-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Frasco conta-gotas de sérum sobre tecido vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Peelings</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Peelings</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Pele nova na superfície. Renovação sem drama.</p>
             <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
             <!-- Card inteiro clicável: abre o modal do serviço -->
             <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-peelings" aria-haspopup="dialog" aria-label="Saber mais sobre peelings"></button>
           </article>
           <!-- Microagulhamento -->
-          <!-- [IMAGEM IA PENDENTE: assets/img/servico-microagulhamento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-microagulhamento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
           <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-microagulhamento-480.webp" srcset="assets/img/servico-microagulhamento-480.webp 480w, assets/img/servico-microagulhamento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Textura de pele em macro, em círculo, sobre fundo creme" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Microagulhamento</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Microagulhamento</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Estímulo de dentro pra fora. Textura que responde.</p>
             <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
             <!-- Card inteiro clicável: abre o modal do serviço -->
             <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-microagulhamento" aria-haspopup="dialog" aria-label="Saber mais sobre microagulhamento"></button>
           </article>
           <!-- Ultrassom MPT -->
-          <!-- [IMAGEM IA PENDENTE: assets/img/servico-ultrassom-mpt-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-ultrassom-mpt-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
           <article class="group relative">
             <div class="relative aspect-[3/4] overflow-hidden mb-4">
-              <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <img src="assets/img/servico-ultrassom-mpt-480.webp" width="364" height="486" alt="Rosa vermelha sobre fundo preto" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
               <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
             </div>
-            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words">Ultrassom MPT</h3>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Ultrassom MPT</h3>
             <p class="font-gothic text-sm text-black/60 leading-snug">Firmeza e definição, com tecnologia que vai fundo.</p>
             <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
             <!-- Card inteiro clicável: abre o modal do serviço -->
@@ -552,41 +557,68 @@
         </div>
 
         <!-- ============================================================
-             PROVA SOCIAL — Reels de influencers (mais forte que texto)
-             TODO (fase de conteúdo): trocar os placeholders abaixo pelos
-             embeds REAIS do Instagram. Formato oficial = oEmbed do Instagram:
-             <blockquote class="instagram-media" data-instgrm-permalink="LINK_DO_REEL" ...>
-             + script https://www.instagram.com/embed.js (chamar window.instgrm.Embeds.process()).
-             PENDENTE: links dos 3 reels + confirmar direitos de uso.
+             PROVA SOCIAL — REELS. Pronto para receber os vídeos:
+             1. salvar os arquivos em  videos/reels/reel-1.mp4 …  (vertical 9:16, H.264, ≤8 MB cada) + poster em assets/img/prova/reel-1.webp
+             2. preencher a lista REELS no início de assets/js/prova.js
+             O JS troca cada placeholder abaixo pelo vídeo (na ordem). Reels extras viram novos slots.
+             Vídeo próprio > embed do Instagram: o embed é pesado e instala cookies da Meta sem consentimento.
+             PENDENTE: vídeos + autorização de uso de imagem de quem aparece.
         ============================================================= -->
         <p class="kicker font-gothic text-vivid mb-2 sr">Prova real</p>
         <h3 aria-label="Na pele de quem viveu." class="font-amador font-normal tracking-normal text-3xl sm:text-4xl mb-10 leading-[1.05] sr" style="transition-delay:.08s">Na pele de quem <span class="text-vivid">viveu</span>.</h3>
 
-        <!-- responsivo: empilhado no mobile, 3 lado a lado no desktop (até 4 reels) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto sr-stagger">
-          <!-- REEL 1 -->
-          <figure>
+        <!-- responsivo: empilhado no mobile, 3 lado a lado no desktop -->
+        <div id="reels-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto sr-stagger">
+          <figure data-reel-slot>
             <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
             <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
-          <!-- REEL 2 -->
-          <figure>
+          <figure data-reel-slot>
             <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
             <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
-          <!-- REEL 3 -->
-          <figure>
+          <figure data-reel-slot>
             <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
             <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
-          <!-- REEL 4 (opcional) — descomentar se houver um 4º reel
-          <figure>
-            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
-            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
-          </figure>
-          -->
         </div>
-        <!-- [PENDENTE] Embeds reais entram na fase de conteúdo: links dos reels + direitos de uso. -->
+
+        <!-- ============================================================
+             PROVA SOCIAL — PRINTS (carrossel). Pronto para receber os prints:
+             1. salvar em assets/img/prova/print-01.webp … (print de celular, vertical)
+             2. preencher a lista PRINTS em assets/js/prova.js (com alt descrevendo o conteúdo)
+             Antes de publicar: borrar nome, foto e telefone de quem escreveu + autorização por escrito.
+             Celular: arrasta com o dedo (scroll-snap). Desktop: setas. Clique no print abre em tamanho grande.
+        ============================================================= -->
+        <div class="mt-20 sm:mt-28">
+          <div class="flex items-end justify-between gap-6 mb-8">
+            <div>
+              <p class="kicker font-gothic text-vivid mb-2 sr">Sem filtro</p>
+              <h3 aria-label="Direto do direct." class="font-gothic font-medium uppercase tracking-tight text-3xl sm:text-4xl leading-[0.95] sr" style="transition-delay:.08s">
+                <span class="font-amador font-normal">D</span>ireto do <span class="text-vivid">dire<span class="font-amador font-normal">c</span>t</span>.
+              </h3>
+            </div>
+            <div class="hidden md:flex gap-2" data-prints-nav>
+              <button type="button" data-prints-prev class="w-11 h-11 flex items-center justify-center border border-black/30 rounded-sm hover:bg-black hover:text-latte transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Prints anteriores">←</button>
+              <button type="button" data-prints-next class="w-11 h-11 flex items-center justify-center border border-black/30 rounded-sm hover:bg-black hover:text-latte transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Próximos prints">→</button>
+            </div>
+          </div>
+          <div id="prints-track" class="prints-track flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 sm:mx-0 sm:px-0"
+               role="region" aria-label="Prints de depoimentos" tabindex="0">
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -721,7 +753,7 @@
   <dialog id="svc-toxina-botulinica" class="svc-dialog" aria-labelledby="svc-toxina-botulinica-t">
     <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
       <div class="relative h-44 md:h-auto overflow-hidden">
-        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src="assets/img/servico-toxina-botulinica-480.webp" srcset="assets/img/servico-toxina-botulinica-480.webp 480w, assets/img/servico-toxina-botulinica-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Rosa vermelha sobre fundo vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
       </div>
       <div class="relative p-7 sm:p-10">
@@ -741,7 +773,7 @@
   <dialog id="svc-preenchimento" class="svc-dialog" aria-labelledby="svc-preenchimento-t">
     <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
       <div class="relative h-44 md:h-auto overflow-hidden">
-        <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src="assets/img/servico-preenchimento-480.webp" srcset="assets/img/servico-preenchimento-480.webp 480w, assets/img/servico-preenchimento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Textura de pele em macro, em círculo, sobre vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
       </div>
       <div class="relative p-7 sm:p-10">
@@ -761,7 +793,7 @@
   <dialog id="svc-peelings" class="svc-dialog" aria-labelledby="svc-peelings-t">
     <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
       <div class="relative h-44 md:h-auto overflow-hidden">
-        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src="assets/img/servico-peelings-480.webp" srcset="assets/img/servico-peelings-480.webp 480w, assets/img/servico-peelings-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Frasco conta-gotas de sérum sobre tecido vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
       </div>
       <div class="relative p-7 sm:p-10">
@@ -781,7 +813,7 @@
   <dialog id="svc-microagulhamento" class="svc-dialog" aria-labelledby="svc-microagulhamento-t">
     <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
       <div class="relative h-44 md:h-auto overflow-hidden">
-        <img src="assets/img/servico-2-480.webp" srcset="assets/img/servico-2-480.webp 480w, assets/img/servico-2-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de máscara conduzindo um aparelho estético sobre o rosto de uma paciente" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src="assets/img/servico-microagulhamento-480.webp" srcset="assets/img/servico-microagulhamento-480.webp 480w, assets/img/servico-microagulhamento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Textura de pele em macro, em círculo, sobre fundo creme" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
       </div>
       <div class="relative p-7 sm:p-10">
@@ -801,7 +833,7 @@
   <dialog id="svc-ultrassom-mpt" class="svc-dialog" aria-labelledby="svc-ultrassom-mpt-t">
     <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
       <div class="relative h-44 md:h-auto overflow-hidden">
-        <img src="assets/img/servico-1-480.webp" srcset="assets/img/servico-1-480.webp 480w, assets/img/servico-1-960.webp 941w" sizes="(min-width: 1024px) 240px, 50vw" width="941" height="1672" alt="Médico de luvas pretas aplicando produto no rosto de uma paciente deitada" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src="assets/img/servico-ultrassom-mpt-480.webp" width="364" height="486" alt="Rosa vermelha sobre fundo preto" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
       </div>
       <div class="relative p-7 sm:p-10">
@@ -816,6 +848,14 @@
         </a>
         <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
       </div>
+    </div>
+  </dialog>
+
+  <!-- Lightbox dos prints (preenchido por assets/js/prova.js) -->
+  <dialog id="print-dialog" class="svc-dialog print-dialog" aria-label="Print em tamanho grande">
+    <div class="svc-panel relative bg-black p-3 sm:p-4">
+      <button type="button" data-close class="absolute top-2 right-2 z-10 w-11 h-11 flex items-center justify-center bg-black/70 font-gothic text-2xl text-latte hover:text-selective" aria-label="Fechar">×</button>
+      <img id="print-dialog-img" src="data:," alt="" class="block mx-auto max-h-[calc(100dvh-64px)] w-auto h-auto" />
     </div>
   </dialog>
 
@@ -959,5 +999,6 @@
   <!-- Medição (GA4 + Meta Pixel) — só carrega após consentimento -->
   <script src="assets/js/medicao.js" defer></script>
   <script src="assets/js/consentimento.js" defer></script>
+  <script src="assets/js/prova.js" defer></script>
 </body>
 </html>
