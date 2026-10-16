@@ -620,10 +620,37 @@
         <p>Instagram: <a href="https://instagram.com/docrafa" target="_blank" rel="noopener" class="hit hover:text-selective">@docrafa</a></p>
       </div>
     </div>
-    <p class="max-w-7xl mx-auto px-5 sm:px-8 mt-8 font-gothic text-[11px] text-latte/30">
-      Wireframe v1 — conteúdo e dados de contato são placeholder, a confirmar. © Rafa Doc.
-    </p>
+    <!-- Identificação médica (Res. CFM 2.336/2023): nome + CRM (+ RQE, se houver) + responsável técnico.
+         [PLACEHOLDER: CRM] e [PLACEHOLDER: RQE] — descomentar os <span> abaixo com os números reais. Sem RQE, não usar "especialista". -->
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-gothic text-xs text-latte/60">
+      <p>
+        Responsável técnico: Dr. Rafael Juliani
+        <!-- [PLACEHOLDER: CRM] <span>· CRM/UF 00000</span> -->
+        <!-- [PLACEHOLDER: RQE] <span>· RQE 00000</span> -->
+      </p>
+      <p class="flex flex-wrap gap-x-5 gap-y-2">
+        <a href="privacidade.html" class="hit hover:text-selective underline underline-offset-4">Política de privacidade</a>
+        <button type="button" data-cookie-prefs class="hit hover:text-selective underline underline-offset-4">Preferências de cookies</button>
+        <span>© 2026 Rafa Doc.</span>
+      </p>
+    </div>
   </footer>
+
+  <!-- =========================================================
+       BANNER DE COOKIES (LGPD) — GA4 e Meta Pixel só carregam após "Aceitar". Escolha em localStorage['rd-consent'].
+  ========================================================== -->
+  <div id="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies"
+       class="fixed z-[70] inset-x-3 bottom-3 sm:inset-x-auto sm:left-6 sm:bottom-6 sm:max-w-md bg-black text-latte border border-white/15 shadow-2xl p-5 sm:p-6">
+    <p class="kicker font-gothic text-selective mb-3">Cookies</p>
+    <p class="font-gothic text-sm text-latte/85 leading-relaxed">
+      Só com o seu ok. Usamos medição (Google Analytics e Meta Pixel) para entender o que funciona no site — nada além disso.
+      <a href="privacidade.html" class="underline underline-offset-4 hover:text-selective">Política de privacidade</a>.
+    </p>
+    <div class="mt-5 flex gap-3">
+      <button type="button" data-consent="granted" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-black rounded-sm hover:bg-selective transition-colors">Aceitar</button>
+      <button type="button" data-consent="denied" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] border border-latte/40 text-latte rounded-sm hover:border-latte transition-colors">Recusar</button>
+    </div>
+  </div>
 
   <!-- =========================================================
        MODAIS DOS SERVIÇOS — <dialog> nativo (foco preso, Esc fecha). Abertos pelos cards de Serviços.
@@ -847,5 +874,6 @@
   </script>
   <!-- Medição (GA4 + Meta Pixel) — só carrega após consentimento -->
   <script src="assets/js/medicao.js" defer></script>
+  <script src="assets/js/consentimento.js" defer></script>
 </body>
 </html>

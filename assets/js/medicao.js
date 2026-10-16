@@ -12,6 +12,7 @@
   var SECOES = ['hero', 'filosofia', 'diferenciais', 'servicos', 'lifestyle', 'prova', 'contato'];
 
   var carregado = false;
+  var pendentes = [];
   function definido(id) { return !!id && id.indexOf('XXXX') < 0 && id !== 'PIXEL_ID'; }
   function consentimento() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
 
@@ -36,6 +37,9 @@
       window.fbq('init', PIXEL_ID);
       window.fbq('track', 'PageView');
     }
+    /* Seções vistas antes do aceite (ex.: o hero) entram agora — o consentimento vale para a visita */
+    pendentes.forEach(function (id) { evento('section_view', { section_id: id }); });
+    pendentes = [];
   }
 
   function evento(nome, params) {
@@ -57,7 +61,11 @@
 
   /* Visualização de seção (1x cada) */
   var vistas = {};
-  function marcar(id) { if (vistas[id]) return; vistas[id] = true; evento('section_view', { section_id: id }); }
+  function marcar(id) {
+    if (vistas[id]) return;
+    vistas[id] = true;
+    if (carregado) evento('section_view', { section_id: id }); else pendentes.push(id);
+  }
   var desktopPin = window.matchMedia && window.matchMedia('(min-width: 1024px)').matches &&
                    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window) {
