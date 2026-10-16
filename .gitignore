@@ -1,0 +1,3 @@
+# Originais pesados e arquivos fora do deploy (preservados localmente e no histórico do git)
+_fontes/
+node_modules/

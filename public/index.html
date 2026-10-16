@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- [PLACEHOLDER: CIDADE] — quando confirmada, completar o título: "… Medicina Estética em <Cidade>" (aqui, em og:title e twitter:title) -->
+  <title>Rafa Doc · Dr. Rafael Juliani — Medicina Estética</title>
+  <meta name="description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <link rel="canonical" href="https://rafadoc.com.br/" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Compartilhamento (WhatsApp, Instagram, Facebook, LinkedIn, X) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rafa Doc" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://rafadoc.com.br/" />
+  <meta property="og:title" content="Rafa Doc · Dr. Rafael Juliani — Medicina Estética" />
+  <meta property="og:description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <meta property="og:image" content="https://rafadoc.com.br/assets/img/og-rafadoc.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dr. Rafael Juliani em retrato vermelho, com a marca Rafa Doc" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rafa Doc · Dr. Rafael Juliani — Medicina Estética" />
+  <meta name="twitter:description" content="Medicina estética autoral com o Dr. Rafael Juliani. Ciência e arte a favor da sua identidade — nunca de um padrão. Agende sua avaliação pelo WhatsApp." />
+  <meta name="twitter:image" content="https://rafadoc.com.br/assets/img/og-rafadoc.jpg" />
+
+  <!-- Dados estruturados (Physician). Pendências do Rafa — acrescentar quando confirmadas:
+       [PLACEHOLDER: CRM]      → "identifier": {"@type":"PropertyValue","propertyID":"CRM","value":"CRM/UF 00000"}
+       [PLACEHOLDER: RQE]      → idem, propertyID "RQE" (só se houver)
+       [PLACEHOLDER: ENDEREÇO] → "address": {"@type":"PostalAddress","streetAddress":"…","addressLocality":"…","addressRegion":"…","postalCode":"…","addressCountry":"BR"}
+       [PLACEHOLDER: HORÁRIO]  → "openingHours": ["Mo-Fr 09:00-18:00"] -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "name": "Dr. Rafael Juliani",
+    "alternateName": "Rafa Doc",
+    "url": "https://rafadoc.com.br/",
+    "image": "https://rafadoc.com.br/assets/img/og-rafadoc.jpg",
+    "logo": "https://rafadoc.com.br/assets/logo/logo-doc-vermelho.svg",
+    "telephone": "+55-47-99192-0666",
+    "sameAs": ["https://instagram.com/docrafa"]
+  }
+  </script>
+
+  <!--
+    Rafa Doc — landing page (página única).
+    Identidade: ID-Visual 2025 — Vivid Red #ED0A15 · Selective Yellow #FFB600 · Black #000 · Cosmic Latte #FFF8E9.
+    Fontes: Amador (display, self-hosted, só letras sem acento) + Special Gothic (corpo/UI, Google Fonts).
+    CSS: Tailwind compilado (npm run build:css). Medição e cookies: assets/js/.
+  -->
+
+  <!-- Tailwind compilado (Tailwind CLI v3 → assets/css/site.css; config em tailwind.config.js). Não usar o CDN em produção. -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <!-- Amador aparece no H1 do hero → preload -->
+  <link rel="preload" href="assets/fonts/amador.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Marca JS ativo: gateia os estados iniciais das animações (sem JS, o conteúdo aparece normal) -->
+  <script>document.documentElement.classList.add('has-js');</script>
+
+  <!-- Special Gothic (corpo/UI) via Google Fonts CDN -->
+  <!-- Special Gothic é VARIÁVEL no eixo de peso 400–700 (300 e 800+ não existem). -->
+  <!-- Títulos usam 500 (Medium) — peso REAL na fonte, nunca faux-bold. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Carregamento sem bloquear a renderização (font-display: swap já mostra o fallback enquanto baixa) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" /></noscript>
+
+
+  <style>
+    /* Amador (blackletter) — display oficial, self-hosted */
+    @font-face {
+      font-family: 'Amador';
+      src: url('assets/fonts/amador.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html { scroll-behavior: smooth; }
+    /* Foco visível (só navegação por teclado): amarelo da marca, legível sobre preto, creme e vermelho */
+    :focus-visible { outline: 2px solid #FFB600; outline-offset: 3px; }
+    #contato :focus-visible, .bg-vivid:focus-visible { outline-color: #000; }
+    .svc-open:focus-visible { outline-offset: -3px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hover\:scale-105:hover, .group:hover .group-hover\:scale-105 { transform: none !important; }
+    }
+    body { font-family: 'Special Gothic', system-ui, sans-serif; }
+
+    /* Grão/textura cinematográfica sutil (overlay global) */
+    .grain-overlay {
+      position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Área de toque ≥44px sem mudar o desenho do link/botão (pseudo-elemento invisível) */
+    .hit { position: relative; }
+    .hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+
+    /* Modal dos serviços */
+    .svc-dialog { padding: 0; border: 0; background: transparent; color: inherit; width: 100%;
+                  max-width: min(860px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); }
+    .svc-dialog .svc-panel { max-height: calc(100dvh - 32px); overflow-y: auto; }
+    .svc-dialog::backdrop { background: rgba(0,0,0,.78); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+    .svc-dialog[open] { animation: svcIn .35s cubic-bezier(.22,.61,.36,1); }
+    @keyframes svcIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    html.svc-lock { overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) { .svc-dialog[open] { animation: none; } }
+
+    /* Carrossel de prints: barra de rolagem escondida (navega por arrasto, setas ou teclado) */
+    .prints-track { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .prints-track::-webkit-scrollbar { display: none; }
+    .print-dialog { max-width: min(560px, calc(100vw - 32px)); }
+
+    /* Placeholder de imagem (bloco tracejado bem marcado) */
+    .ph {
+      border: 2px dashed currentColor;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .ph span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; padding: 1.25rem; }
+
+    .kicker { letter-spacing: .32em; text-transform: uppercase; font-size: .72rem; }
+    section { scroll-margin-top: 5rem; }
+
+
+    /* Marquee / ticker — tagline em loop sem emenda.
+       Conteúdo duplicado em 2 grupos idênticos; translateX(-50%) avança exatamente 1 grupo → reinício invisível. */
+    .marquee__track { display: flex; width: max-content; animation: marquee 29s linear infinite; } /* mobile: faixa maior → duração maior p/ velocidade confortável */
+    @media (min-width: 640px) { .marquee__track { animation-duration: 24s; } } /* desktop: fonte no tamanho original (4.5vw) → duração menor p/ velocidade levemente acima do original */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee:hover .marquee__track { animation-play-state: paused; } /* movimento contido: pausa no hover */
+    @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; transform: none; } }
+
+    /* DIFERENCIAIS — reveal em cascata, SÓ FADE (opacidade 0→1), sem traçado/transform.
+       Dispara via .diff-in (Intersection Observer, 1x); estados iniciais gateados por .has-js. */
+    .has-js .reveal-up { opacity: 0; transition: opacity .7s ease; }
+    .has-js .diff-in .reveal-up { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .has-js .reveal-up { opacity: 1; transition: none; }
+    }
+
+    /* SCROLL REVEAL geral — seções sem animação própria (Filosofia, Serviços, Lifestyle, Autoridade, CTA).
+       .sr = elemento único; .sr-stagger = escalona os filhos diretos (nth-child). Fade-in + leve subida; dispara 1x via Intersection Observer.
+       NÃO usado em Diferenciais (.reveal-up/.diff-in) nem no Hero. */
+    .has-js .sr,
+    .has-js .sr-stagger > * { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+    .has-js .sr.is-in,
+    .has-js .sr-stagger.is-in > * { opacity: 1; transform: none; }
+    .has-js .sr-stagger.is-in > *:nth-child(1) { transition-delay: 0s; }
+    .has-js .sr-stagger.is-in > *:nth-child(2) { transition-delay: .1s; }
+    .has-js .sr-stagger.is-in > *:nth-child(3) { transition-delay: .2s; }
+    .has-js .sr-stagger.is-in > *:nth-child(4) { transition-delay: .3s; }
+    .has-js .sr-stagger.is-in > *:nth-child(5) { transition-delay: .4s; }
+    .has-js .sr-stagger.is-in > *:nth-child(6) { transition-delay: .5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .has-js .sr, .has-js .sr-stagger > * { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* HERO — entrada no LOAD: texto sobe escalonado (fade + translateY 30px) + logo em fade.
+       Vídeo de fundo com zoom lento contínuo (1.0↔1.08, breathing) — alternate = loop sem corte; gradiente/texto por cima ficam intactos (legibilidade). */
+    @keyframes heroRise { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+    @keyframes heroLogoIn { from { opacity: 0; } to { opacity: .95; } }
+    @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+    .hero-rise { opacity: 0; animation: heroRise .6s cubic-bezier(.22,.61,.36,1) both; }
+    .hero-logo { opacity: 0; animation: heroLogoIn 1.2s ease .5s both; }
+    .hero-video { animation: heroZoom 20s ease-in-out infinite alternate; transform-origin: center; will-change: transform; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-rise { opacity: 1; transform: none; animation: none; }
+      .hero-logo { opacity: .95; animation: none; }
+      .hero-video { animation: none; }
+    }
+
+    /* Cena pinada da elipse — fallback p/ reduced-motion: desfaz o pin e empilha Filosofia e Diferenciais normalmente. */
+    @media (prefers-reduced-motion: reduce) {
+      #filo-rail { height: auto !important; }
+      #filosofia { position: static; height: auto; overflow: visible; }
+      #filo-stage-a, #diferenciais { position: static; padding: 6rem 0; overflow: visible; }
+      #filo-blackout { display: none; }
+      #diferenciais { background: #000; }
+      #skin-circle { transform: none !important; }
+    }
+
+    /* Mobile/tablet (< lg): DESATIVA o pin da elipse e empilha Filosofia → Diferenciais no fluxo normal,
+       evitando títulos cortados pelo overflow-hidden da cena pinada (h-screen + items-center).
+       A animação da elipse roda só no desktop (lg+). */
+    @media (max-width: 1023.98px) {
+      #filo-rail { height: auto !important; }
+      #filosofia { position: static; height: auto; overflow: visible; }
+      #filo-stage-a, #diferenciais { position: static; padding: 4rem 0; overflow: visible; }
+      #filo-blackout { display: none; }
+      #diferenciais { background: #000; }
+      #skin-circle { transform: none !important; }
+      .has-js .reveal-up { opacity: 1; transform: none; }   /* mostra o conteúdo dos Diferenciais (cascata é só desktop) */
+    }
+  </style>
+</head>
+
+<body class="bg-black text-latte antialiased selection:bg-vivid selection:text-latte">
+  <div class="grain-overlay"></div>
+
+  <!-- =========================================================
+       NAV (fixo)
+  ========================================================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#hero" class="hit flex items-center gap-2">
+        <img src="assets/logo/logo-doc-branco.svg" alt="Rafa Doc" width="1080" height="1080" class="h-7 w-auto" />
+      </a>
+      <ul class="hidden md:flex items-center gap-8 font-gothic text-xs uppercase tracking-[0.18em] text-latte/80">
+        <li><a href="#filosofia" class="hit hover:text-vivid transition-colors">Filosofia</a></li>
+        <li><a href="#diferenciais" class="hit hover:text-vivid transition-colors">Diferenciais</a></li>
+        <li><a href="#servicos" class="hit hover:text-vivid transition-colors">Serviços</a></li>
+        <li><a href="#lifestyle" class="hit hover:text-vivid transition-colors">Lifestyle</a></li>
+        <li><a href="#prova" class="hit hover:text-vivid transition-colors">Autoridade</a></li>
+      </ul>
+      <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="nav" target="_blank" rel="noopener"
+         class="hit font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-black px-4 py-2 rounded-sm hover:bg-selective transition-colors">
+        WhatsApp
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         1 · HERO  — fundo preto/vermelho com grão + headline gigante
+    ========================================================== -->
+    <section id="hero" class="relative min-h-screen flex items-end overflow-hidden pt-16">
+      <!-- Vídeo de fundo do Hero: autoplay/loop/muted/playsinline (obrigatórios p/ autoplay); poster = retrato P&B (fallback no load e no mobile sem autoplay).
+           H.264 sem áudio + faststart: 720p (~1,1 MB) no celular, 1080p (~3,3 MB) no resto. Originais em _fontes/ (fora do deploy). -->
+      <video aria-hidden="true" class="hero-video absolute inset-0 w-full h-full object-cover z-0"
+             autoplay loop muted playsinline preload="auto"
+             poster="assets/img/hero-poster.webp">
+        <source src="videos/final-bg-720.mp4" type="video/mp4" media="(max-width: 767.98px)" />
+        <source src="videos/final-bg.mp4" type="video/mp4" />
+      </video>
+      <!-- Overlay degradê preto→vermelho POR CIMA do vídeo — preserva a legibilidade do texto e da logo -->
+      <div class="absolute inset-0 z-10 pointer-events-none"
+           style="background: radial-gradient(120% 90% at 70% 20%, rgba(237,10,21,0.74) 0%, rgba(94,0,6,0.82) 45%, rgba(0,0,0,0.92) 100%);"></div>
+      <!-- Logo Rafa Doc (branca) ocupando o espaço à direita do Hero, acima do vídeo -->
+      <div class="absolute inset-0 z-20 flex items-center justify-end pr-[6%] pointer-events-none">
+        <img src="assets/logo/logo-doc-branco.svg" alt="" width="1080" height="1080"
+             class="hero-logo hidden lg:block w-[38%] max-w-md h-auto" />
+      </div>
+
+      <div class="relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 pb-16 sm:pb-24">
+        <p class="kicker font-gothic text-selective mb-6 hero-rise" style="animation-delay:.15s">No filter. No bullshit.</p>
+        <h1 aria-label="Beleza não se obedece." class="font-gothic font-medium uppercase leading-[0.98] text-latte text-[10.5vw] sm:text-[8vw] lg:text-[6.25rem] max-w-5xl hero-rise" style="animation-delay:.3s">
+          <span class="font-amador font-normal">Beleza</span> não se <span class="text-vivid">o<span class="font-amador font-normal">b</span>edece.</span>
+        </h1>
+        <p class="font-gothic text-latte/80 mt-8 max-w-xl text-lg leading-relaxed hero-rise" style="animation-delay:.45s">
+          Aqui a estética parte de quem você é — nunca de um padrão.
+          Ciência e arte a favor da sua identidade.
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-4 hero-rise" style="animation-delay:.6s">
+          <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="hero" target="_blank" rel="noopener"
+             class="font-gothic uppercase tracking-[0.18em] text-sm bg-vivid text-black px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+            Falar no WhatsApp
+          </a>
+          <a href="#filosofia"
+             class="font-gothic uppercase tracking-[0.18em] text-sm border border-latte/30 text-latte px-7 py-4 rounded-sm hover:border-latte transition-colors">
+            Conhecer a filosofia
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2 · FILOSOFIA → DIFERENCIAIS — cena PINADA única (scrollytelling). Trilho #filo-rail de 300vh:
+         a seção fica STICKY e o scroll é "consumido" pelas fases, SEM rolagem intermediária:
+         (1) círculo de pele expande → (2) blackout vira tudo PRETO → (3) o conteúdo dos Diferenciais
+         (título + cards 01/02/03 + selos) nasce em cascata SOBRE o preto. Só então o pin solta p/ Serviços.
+    ========================================================== -->
+    <div id="filo-rail" class="relative" style="height:300vh;">
+    <section id="filosofia" class="sticky top-0 h-screen overflow-hidden bg-[#FFF2E2] text-black">
+      <!-- Camada A: conteúdo da Filosofia (texto + círculo), centralizado -->
+      <div id="filo-stage-a" class="absolute inset-0 flex items-center">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center w-full">
+        <div class="sr-stagger">
+          <p class="kicker font-gothic text-vivid mb-6">Filosofia</p>
+          <!-- Título: Special Gothic Bold CAIXA ALTA (base) + Amador só como ornamento em letras soltas SEM acento -->
+          <h2 aria-label="A pele não é moldura. É matéria viva." class="font-gothic font-medium uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-8">
+            A <span class="font-amador font-normal">p</span>ele não é <span class="font-amador font-normal">m</span>oldura.<br />É <span class="text-vivid">matéria <span class="font-amador font-normal">v</span>iva</span>.
+          </h2>
+          <div class="font-gothic text-black/70 space-y-5 text-lg leading-relaxed max-w-xl">
+            <p>A indústria prefere silêncio: maquia, uniformiza, clareia, abafa — e
+               vende isso como liberdade. A gente discorda. Estética não existe pra
+               te encaixar num padrão.</p>
+            <p>Ciência pra precisão, arte pro olhar. Juntas, leem o que é seu —
+               proporção, expressão, história — e partem daí. O procedimento é meio;
+               a identidade é o ponto de partida.</p>
+          </div>
+          <blockquote aria-label="Autocuidado não é ceder. É escolher." class="font-gothic font-medium text-3xl sm:text-4xl text-black mt-10 border-l-4 border-vivid pl-6">
+            “<span class="font-amador font-normal">A</span>utocuidado não é ceder. É <span class="text-vivid font-amador font-normal">escolher</span>.”
+          </blockquote>
+        </div>
+
+        <!-- Motivo macro-de-pele: SKI-2N com zoom + máscara radial que dissolve no fundo creme (#FFF2E2) em toda a volta, sem corte seco na borda -->
+        <div class="flex justify-center sr" style="transition-delay:.15s">
+          <div id="skin-circle" class="w-[70vw] max-w-xl aspect-square overflow-hidden"
+               role="img" aria-label="Pele em macro — matéria viva"
+               style="transform-origin:center; will-change:transform;
+                      -webkit-mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);
+                      mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);">
+            <video id="skin-video" aria-hidden="true" class="w-full h-full object-cover block"
+                   muted loop playsinline preload="none" data-autoplay-inview
+                   poster="assets/img/pele-macro.webp"
+                   style="transform: scale(1.7); transform-origin: center;"><!-- zoom 1.7 = background-size:170% da versão em imagem; máscara fica só no #skin-circle (antes estava duplicada e encolhia o disco) -->
+              <source src="videos/pele-macro.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- Camada B: blackout sincronizado com a expansão — escurece tudo p/ PRETO -->
+      <div id="filo-blackout" class="absolute inset-0 z-20 bg-black pointer-events-none" style="opacity:0;"></div>
+
+      <!-- Camada C: conteúdo dos DIFERENCIAIS, SOBRE o preto. Nasce na fase 3 (.diff-in adicionada pelo scroll).
+           Mantém conteúdo/estilos originais: container único c/ divisórias verticais + cascata dos cards.
+           Reusa id="diferenciais" p/ servir o link de nav e o toggle da cascata. -->
+      <div id="diferenciais" class="absolute inset-0 z-30 flex items-center text-latte">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+          <p class="kicker font-gothic text-selective mb-6 reveal-up">Diferenciais</p>
+          <h2 aria-label="Estética não apaga quem você é. Revela." class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 max-w-3xl reveal-up" style="transition-delay:.1s">
+            <span class="font-amador font-normal">E</span>stética não apaga quem você é. <span class="text-vivid"><span class="font-amador font-normal">R</span>evela.</span>
+          </h2>
+
+          <!-- UM container só: borda fina white/20 + divisórias internas via gap-px. Cascata dos cards. -->
+          <div class="reveal-up grid md:grid-cols-3 gap-px bg-white/20 border border-white/20" style="transition-delay:.2s">
+            <!-- 01 -->
+            <div class="bg-black p-6 sm:p-7">
+              <div class="reveal-up" style="transition-delay:.35s">
+                <div class="font-amador text-vivid text-6xl mb-3">01</div>
+                <h3 class="font-gothic font-medium uppercase tracking-[0.14em] text-lg mb-3">Sem fôrma.</h3>
+                <p class="font-gothic text-latte/65 leading-relaxed">
+                  Individualização de verdade: leitura única pra cada rosto, não
+                  protocolo de prateleira.
+                </p>
+              </div>
+            </div>
+            <!-- 02 -->
+            <div class="bg-black p-6 sm:p-7">
+              <div class="reveal-up" style="transition-delay:.5s">
+                <div class="font-amador text-vivid text-6xl mb-3">02</div>
+                <h3 class="font-gothic font-medium uppercase tracking-[0.14em] text-lg mb-3">Olhar, não régua.</h3>
+                <p class="font-gothic text-latte/65 leading-relaxed">
+                  Visão artística sobre proporção, expressão e história. Estética é
+                  linguagem.
+                </p>
+              </div>
+            </div>
+            <!-- 03 -->
+            <div class="bg-black p-6 sm:p-7">
+              <div class="reveal-up" style="transition-delay:.65s">
+                <div class="font-amador text-vivid text-6xl mb-3">03</div>
+                <h3 class="font-gothic font-medium uppercase tracking-[0.14em] text-lg mb-3">Você, não um filtro.</h3>
+                <p class="font-gothic text-latte/65 leading-relaxed">
+                  Estética natural: resultado que parece você num bom dia — nunca um
+                  rosto carimbado.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linha de selos -->
+          <div class="mt-8 flex flex-wrap gap-10 sm:gap-14 items-center justify-center reveal-up" style="transition-delay:.72s">
+            <img src="assets/selos/nofilter.png" width="267" height="158" alt="Selo No filter. No bullshit." class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/notobey.png" width="277" height="158" alt="Selo Do Not Obey" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/autentic.png" width="164" height="160" alt="Selo Authenticity" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+            <img src="assets/selos/skin.png" width="126" height="158" alt="Selo Skin" class="h-[72px] w-auto shrink-0 hover:scale-105 transition-transform" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- =========================================================
+         4 · SERVIÇOS  — cards-pôster verticais, experiência (não lista clínica)
+    ========================================================== -->
+    <section id="servicos" class="relative z-30 bg-latte text-black py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <p class="kicker font-gothic text-vivid mb-6 sr">Experiências</p>
+        <h2 aria-label="Não é cardápio. É experiência." class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl lg:text-6xl mb-4 max-w-3xl sr" style="transition-delay:.08s">
+          <span class="font-amador font-normal">N</span>ão é cardápi<span class="font-amador font-normal">o.</span> É <span class="text-vivid">e<span class="font-amador font-normal">x</span>periência</span>.
+        </h2>
+        <p class="font-gothic text-black/60 text-lg max-w-2xl mb-14 sr" style="transition-delay:.16s">
+          Cada procedimento é pensado como experiência estética — não como item de menu clínico.
+        </p>
+
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-5 sr-stagger">
+          <!-- card: foto + nome + linha sensorial + "Saber mais" (abre modal com descrição e CTA do WhatsApp) -->
+          <!-- Toxina botulínica -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-toxina-botulinica-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
+            <div class="relative aspect-[3/4] overflow-hidden mb-4">
+              <img src="assets/img/servico-toxina-botulinica-480.webp" srcset="assets/img/servico-toxina-botulinica-480.webp 480w, assets/img/servico-toxina-botulinica-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Rosa vermelha sobre fundo vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
+            </div>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Toxina botulínica</h3>
+            <p class="font-gothic text-sm text-black/60 leading-snug">Congelar a cara? Não aqui. A expressão é sua.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-toxina-botulinica" aria-haspopup="dialog" aria-label="Saber mais sobre toxina botulínica"></button>
+          </article>
+          <!-- Preenchimento -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-preenchimento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
+            <div class="relative aspect-[3/4] overflow-hidden mb-4">
+              <img src="assets/img/servico-preenchimento-480.webp" srcset="assets/img/servico-preenchimento-480.webp 480w, assets/img/servico-preenchimento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Textura de pele em macro, em círculo, sobre vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
+            </div>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Preenchimento</h3>
+            <p class="font-gothic text-sm text-black/60 leading-snug">Volume e contorno com leitura individual — nada de molde universal.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-preenchimento" aria-haspopup="dialog" aria-label="Saber mais sobre preenchimento"></button>
+          </article>
+          <!-- Peelings -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-peelings-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
+            <div class="relative aspect-[3/4] overflow-hidden mb-4">
+              <img src="assets/img/servico-peelings-480.webp" srcset="assets/img/servico-peelings-480.webp 480w, assets/img/servico-peelings-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Frasco conta-gotas de sérum sobre tecido vermelho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
+            </div>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Peelings</h3>
+            <p class="font-gothic text-sm text-black/60 leading-snug">Pele nova na superfície. Renovação sem drama.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-peelings" aria-haspopup="dialog" aria-label="Saber mais sobre peelings"></button>
+          </article>
+          <!-- Microagulhamento -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-microagulhamento-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
+            <div class="relative aspect-[3/4] overflow-hidden mb-4">
+              <img src="assets/img/servico-microagulhamento-480.webp" srcset="assets/img/servico-microagulhamento-480.webp 480w, assets/img/servico-microagulhamento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Textura de pele em macro, em círculo, sobre fundo creme" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-vivid opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
+            </div>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Microagulhamento</h3>
+            <p class="font-gothic text-sm text-black/60 leading-snug">Estímulo de dentro pra fora. Textura que responde.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-microagulhamento" aria-haspopup="dialog" aria-label="Saber mais sobre microagulhamento"></button>
+          </article>
+          <!-- Ultrassom MPT -->
+          <!-- [IMAGEM PROVISÓRIA — sem rosto, material da marca. Trocar pela imagem de IA mantendo o nome: assets/img/servico-ultrassom-mpt-480.webp / -960.webp — ver PROMPTS-IMAGENS-SERVICOS.md] -->
+          <article class="group relative">
+            <div class="relative aspect-[3/4] overflow-hidden mb-4">
+              <img src="assets/img/servico-ultrassom-mpt-480.webp" width="364" height="486" alt="Rosa vermelha sobre fundo preto" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[400ms] ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-black opacity-70 group-hover:opacity-0 transition-opacity duration-700 ease-out pointer-events-none"></div>
+            </div>
+            <h3 class="font-gothic font-medium uppercase text-lg sm:text-2xl lg:text-xl leading-tight mb-1 break-words hyphens-auto">Ultrassom MPT</h3>
+            <p class="font-gothic text-sm text-black/60 leading-snug">Firmeza e definição, com tecnologia que vai fundo.</p>
+            <span class="mt-3 inline-block font-gothic text-[11px] uppercase tracking-[0.18em] text-black" aria-hidden="true">Saber mais <span class="text-vivid">+</span></span>
+            <!-- Card inteiro clicável: abre o modal do serviço -->
+            <button type="button" class="svc-open absolute inset-0 z-10 w-full h-full cursor-pointer" data-svc="svc-ultrassom-mpt" aria-haspopup="dialog" aria-label="Saber mais sobre ultrassom MPT"></button>
+          </article>
+        </div>
+        <!-- PMMA não consta — rejeitado no posicionamento da marca. -->
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5 · LIFESTYLE — bg lifestyle.webp (assets/img, ~preto, brilho 3/255 → off-white legível).
+         A MARQUEE "GOD SAVE THE SKIN" NÃO vive aqui: é um elemento FIXO (logo após esta section), em z-20,
+         posicionado ENTRE Lifestyle (z-10, atrás) e Serviços/Autoridade (z-30 opacos, na frente).
+         Resultado: a faixa emerge de trás de Serviços e mergulha sob Autoridade — aparece só sobre a Lifestyle.
+    ========================================================== -->
+    <section id="lifestyle" class="relative z-10 bg-black text-latte min-h-screen">
+      <!-- BG: ROSA-2 (quase preto) + overlay leve (imagem já é escura) -->
+      <div class="absolute inset-0 z-0">
+        <picture class="block w-full h-full">
+          <!-- Mobile/tablet (< lg): versão recortada em orientação vertical -->
+          <source media="(max-width: 1023.98px)" srcset="assets/img/lifestyle-mobile.webp" />
+          <!-- Desktop (lg+): versão landscape -->
+          <img src="assets/img/lifestyle.webp" alt="" width="1920" height="1157" class="w-full h-full object-cover" loading="lazy" />
+        </picture>
+        <div class="absolute inset-0 bg-black/25"></div>
+      </div>
+
+      <!-- COPY na parte SUPERIOR (acima da linha central da marquee) — segue legível sobre a imagem -->
+      <div class="absolute inset-x-0 top-0 h-screen z-10 flex flex-col items-center justify-center text-center px-5 sm:px-8 sr-stagger">
+        <p class="kicker font-gothic text-latte/80 mb-6">Lifestyle</p>
+        <h2 aria-label="Freedom isn’t a product." class="font-gothic font-medium uppercase text-latte text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight" style="text-shadow:0 2px 28px rgba(0,0,0,.6)">
+          Freedom isn't<br />a product.
+        </h2>
+        <p class="font-gothic text-latte/90 mt-8 max-w-xl mx-auto text-lg" style="text-shadow:0 2px 16px rgba(0,0,0,.7)">
+          Pertencimento, atitude e identidade. Cuidar da pele é escolher —
+          nunca obedecer.
+        </p>
+      </div>
+    </section>
+
+    <!-- MARQUEE "GOD SAVE THE SKIN" — FIXA no centro do viewport (z-20): atrás de Serviços/Autoridade (z-30),
+         à frente da Lifestyle (z-10). Assim ela "passa por trás" das vizinhas e só aparece sobre a Lifestyle.
+         Visível apenas enquanto a Lifestyle está na viewport (toggle via Intersection Observer no fim do body).
+         Sem fundo; separador = logo-doc-vermelho.svg proporcional ao texto (h:0.72em). 2 grupos = loop sem emenda. -->
+    <div id="lifestyle-marquee" class="marquee fixed inset-x-0 top-1/2 -translate-y-1/2 z-20 overflow-hidden pointer-events-none select-none opacity-0 transition-opacity duration-300" role="marquee" aria-label="GOD SAVE THE SKIN">
+      <div class="marquee__track" aria-hidden="true">
+        <!-- grupo 1 -->
+        <div class="flex items-center shrink-0 font-gothic font-medium uppercase tracking-tight text-latte text-[8.5vw] sm:text-[4.5vw] leading-none whitespace-nowrap" style="text-shadow:0 2px 18px rgba(0,0,0,.55)">
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+        </div>
+        <!-- grupo 2 (idêntico, p/ loop sem emenda) -->
+        <div class="flex items-center shrink-0 font-gothic font-medium uppercase tracking-tight text-latte text-[8.5vw] sm:text-[4.5vw] leading-none whitespace-nowrap" style="text-shadow:0 2px 18px rgba(0,0,0,.55)">
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+          <span class="mx-[0.3em]">GOD SAVE THE SKIN</span>
+          <img src="assets/logo/logo-doc-vermelho.svg" alt="" width="1080" height="1080" class="h-[0.72em] w-auto mx-[0.3em]" />
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         6 · SOCIAL PROOF  — autoridade contida + imagens reais
+    ========================================================== -->
+    <section id="prova" class="relative z-30 bg-latte text-black py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+        <!-- intro: pôster real (candidato) + posicionamento de autoridade -->
+        <div class="grid lg:grid-cols-2 gap-14 items-center mb-20 sr-stagger">
+          <div>
+            <img src="assets/img/rafael-juliani-1280.webp" srcset="assets/img/rafael-juliani-640.webp 640w, assets/img/rafael-juliani-1280.webp 1280w, assets/img/rafael-juliani-1920.webp 1920w" sizes="(min-width: 1024px) 600px, 100vw" width="1920" height="1080" alt="Dr. Rafael Juliani de jaleco, gravata e estetoscópio, em retrato com luz vermelha"
+                 class="w-full h-auto border border-black/10 shadow-2xl" loading="lazy" />
+          </div>
+          <div>
+            <p class="kicker font-gothic text-vivid mb-6">Autoridade</p>
+            <h2 class="font-amador font-normal tracking-normal text-5xl sm:text-6xl lg:text-7xl mb-6 leading-[1.05]">Dr. Rafael Juliani</h2>
+            <p class="font-gothic text-black/70 text-lg leading-relaxed max-w-xl">
+              Formação séria, mão autoral e uma convicção: estética é identidade,
+              não padrão. Cada rosto é tratado como caso único — técnica de sobra,
+              zero fórmula pronta. Autoridade que não precisa gritar.
+            </p>
+            <!-- FORMAÇÃO — oculta até o Rafa enviar as credenciais reais (3 a 5 linhas). Para publicar: remover "hidden".
+                 [PLACEHOLDER: FORMAÇÃO] graduação (instituição, ano) · residência/pós · sociedades. Nada inventado. -->
+            <ul hidden class="mt-8 border-t border-black/15 font-gothic text-sm text-black/70">
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Graduação em Medicina — instituição] --></li>
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Residência / pós-graduação] --></li>
+              <li class="py-3 border-b border-black/15"><!-- [PLACEHOLDER: Sociedade(s) / certificações] --></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             PROVA SOCIAL — REELS. Pronto para receber os vídeos:
+             1. salvar os arquivos em  videos/reels/reel-1.mp4 …  (vertical 9:16, H.264, ≤8 MB cada) + poster em assets/img/prova/reel-1.webp
+             2. preencher a lista REELS no início de assets/js/prova.js
+             O JS troca cada placeholder abaixo pelo vídeo (na ordem). Reels extras viram novos slots.
+             Vídeo próprio > embed do Instagram: o embed é pesado e instala cookies da Meta sem consentimento.
+             PENDENTE: vídeos + autorização de uso de imagem de quem aparece.
+        ============================================================= -->
+        <p class="kicker font-gothic text-vivid mb-2 sr">Prova real</p>
+        <h3 aria-label="Na pele de quem viveu." class="font-amador font-normal tracking-normal text-3xl sm:text-4xl mb-10 leading-[1.05] sr" style="transition-delay:.08s">Na pele de quem <span class="text-vivid">viveu</span>.</h3>
+
+        <!-- responsivo: empilhado no mobile, 3 lado a lado no desktop -->
+        <div id="reels-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto sr-stagger">
+          <figure data-reel-slot>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
+          </figure>
+          <figure data-reel-slot>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
+          </figure>
+          <figure data-reel-slot>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
+          </figure>
+        </div>
+
+        <!-- ============================================================
+             PROVA SOCIAL — PRINTS (carrossel). Pronto para receber os prints:
+             1. salvar em assets/img/prova/print-01.webp … (print de celular, vertical)
+             2. preencher a lista PRINTS em assets/js/prova.js (com alt descrevendo o conteúdo)
+             Antes de publicar: borrar nome, foto e telefone de quem escreveu + autorização por escrito.
+             Celular: arrasta com o dedo (scroll-snap). Desktop: setas. Clique no print abre em tamanho grande.
+        ============================================================= -->
+        <div class="mt-20 sm:mt-28">
+          <div class="flex items-end justify-between gap-6 mb-8">
+            <div>
+              <p class="kicker font-gothic text-vivid mb-2 sr">Sem filtro</p>
+              <h3 aria-label="Direto do direct." class="font-gothic font-medium uppercase tracking-tight text-3xl sm:text-4xl leading-[0.95] sr" style="transition-delay:.08s">
+                <span class="font-amador font-normal">D</span>ireto do <span class="text-vivid">dire<span class="font-amador font-normal">c</span>t</span>.
+              </h3>
+            </div>
+            <div class="hidden md:flex gap-2" data-prints-nav>
+              <button type="button" data-prints-prev class="w-11 h-11 flex items-center justify-center border border-black/30 rounded-sm hover:bg-black hover:text-latte transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Prints anteriores">←</button>
+              <button type="button" data-prints-next class="w-11 h-11 flex items-center justify-center border border-black/30 rounded-sm hover:bg-black hover:text-latte transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Próximos prints">→</button>
+            </div>
+          </div>
+          <div id="prints-track" class="prints-track flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 sm:mx-0 sm:px-0"
+               role="region" aria-label="Prints de depoimentos" tabindex="0">
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          <div class="prints-card shrink-0 snap-start w-[68%] sm:w-[40%] lg:w-[calc(25%-15px)]">
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ PRINT ]<br />depoimento<br />(placeholder)</span></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ONDE ATENDE — OCULTA até P3/P4 (endereço, bairro, cidade, mapa, horário). Para publicar: remover "hidden".
+         Concorrentes: 5/5 mostram endereço, mapa ou horário.
+    ========================================================== -->
+    <section id="onde" hidden class="relative z-30 bg-black text-latte py-24 sm:py-32 border-t border-white/10" aria-labelledby="onde-t">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="kicker font-gothic text-selective mb-6">Onde atende</p>
+          <h2 id="onde-t" class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl leading-[0.95] mb-8">
+            <!-- [PLACEHOLDER: BAIRRO / CIDADE] -->
+          </h2>
+          <dl class="font-gothic text-latte/80 space-y-5">
+            <div><dt class="kicker text-latte/60 mb-1">Endereço</dt><dd><!-- [PLACEHOLDER: ENDEREÇO completo] --></dd></div>
+            <div><dt class="kicker text-latte/60 mb-1">Horário</dt><dd><!-- [PLACEHOLDER: HORÁRIO] --></dd></div>
+            <div><dt class="kicker text-latte/60 mb-1">Atendimento</dt><dd><!-- [PLACEHOLDER: "Particular" — confirmar] --></dd></div>
+          </dl>
+        </div>
+        <div class="aspect-[4/3] bg-white/5 border border-white/10">
+          <!-- [PLACEHOLDER: MAPA] iframe do Google Maps (Compartilhar → Incorporar mapa):
+          <iframe src="https://www.google.com/maps/embed?pb=…" title="Mapa do consultório" class="w-full h-full border-0"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PERGUNTAS FREQUENTES — OCULTA até o Rafa responder (P10). Para publicar: remover "hidden" e preencher as respostas.
+    ========================================================== -->
+    <section id="faq" hidden class="relative z-30 bg-latte text-black py-24 sm:py-32" aria-labelledby="faq-t">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8">
+        <p class="kicker font-gothic text-vivid mb-6">Perguntas</p>
+        <h2 id="faq-t" class="font-gothic font-medium uppercase tracking-tight text-4xl sm:text-5xl leading-[0.95] mb-12">Antes de mandar mensagem.</h2>
+        <div class="border-t border-black/15 font-gothic">
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Como é a primeira consulta?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Quanto tempo dura?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">O atendimento é particular?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+          <details class="group border-b border-black/15 py-5">
+            <summary class="cursor-pointer list-none flex justify-between gap-6 uppercase tracking-[0.08em] font-medium">Que cuidados tenho depois?<span class="text-vivid group-open:rotate-45 transition-transform">+</span></summary>
+            <p class="mt-4 text-black/70 leading-relaxed"><!-- [PLACEHOLDER: resposta do Rafa] --></p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7 · CTA FINAL → WhatsApp  — fundo vermelho pleno
+    ========================================================== -->
+    <section id="contato" class="relative text-latte py-28 sm:py-40 overflow-hidden"
+             style="background: radial-gradient(120% 120% at 50% 30%, #ED0A15 0%, #b00810 70%, #7a0008 100%);">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+        <p class="kicker font-gothic text-latte/70 mb-6 sr">Vamos nessa</p>
+        <h2 aria-label="Vamos começar a sua." class="font-gothic font-medium uppercase tracking-tight text-6xl sm:text-7xl lg:text-8xl leading-[0.92] mb-8 sr" style="transition-delay:.1s">
+          Vamos <span class="font-amador font-normal">c</span>omeçar<br />a <span class="text-black"><span class="font-amador font-normal">s</span>ua</span>.
+        </h2>
+        <p class="font-gothic text-latte/85 text-lg sm:text-xl max-w-xl mx-auto mb-12 sr" style="transition-delay:.2s">
+          Nada de pacote empurrado: uma conversa real sobre você, no seu tempo.
+          Manda mensagem no WhatsApp — sem pressa, sem pressão.
+        </p>
+
+        <div class="sr" style="transition-delay:.3s">
+          <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20conversar." data-cta="final" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-3 font-gothic uppercase tracking-[0.18em] text-sm sm:text-base bg-black text-latte px-10 py-5 rounded-sm hover:bg-latte hover:text-black transition-colors">
+            Falar no WhatsApp →
+          </a>
+        </div>
+        <!-- [PENDENTE] Confirmar o número do WhatsApp: 47 99192 0666 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-black text-latte/70 py-14 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+      <img src="assets/logo/logo-doc-amarelo.svg" alt="Rafa Doc" width="1080" height="1080" class="h-9 w-auto" loading="lazy" />
+      <div class="font-gothic text-sm space-y-1 sm:text-right">
+        <p>WhatsApp: <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site." data-cta="rodape" target="_blank" rel="noopener" class="hit hover:text-selective">47 99192 0666</a></p>
+        <p>E-mail: <a href="mailto:contato@rafadoc.com.br" class="hit hover:text-selective">contato@rafadoc.com.br</a></p>
+        <p>Instagram: <a href="https://instagram.com/docrafa" target="_blank" rel="noopener" class="hit hover:text-selective">@docrafa</a></p>
+      </div>
+    </div>
+    <!-- Identificação médica (Res. CFM 2.336/2023): nome + CRM (+ RQE, se houver) + responsável técnico.
+         [PLACEHOLDER: CRM] e [PLACEHOLDER: RQE] — descomentar os <span> abaixo com os números reais. Sem RQE, não usar "especialista". -->
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-gothic text-xs text-latte/60">
+      <p>
+        Responsável técnico: Dr. Rafael Juliani
+        <!-- [PLACEHOLDER: CRM] <span>· CRM/UF 00000</span> -->
+        <!-- [PLACEHOLDER: RQE] <span>· RQE 00000</span> -->
+      </p>
+      <p class="flex flex-wrap gap-x-5 gap-y-2">
+        <a href="privacidade.html" class="hit hover:text-selective underline underline-offset-4">Política de privacidade</a>
+        <button type="button" data-cookie-prefs class="hit hover:text-selective underline underline-offset-4">Preferências de cookies</button>
+        <span>© 2026 Rafa Doc.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       BANNER DE COOKIES (LGPD) — GA4 e Meta Pixel só carregam após "Aceitar". Escolha em localStorage['rd-consent'].
+  ========================================================== -->
+  <div id="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies"
+       class="fixed z-[70] inset-x-3 bottom-3 sm:inset-x-auto sm:left-6 sm:bottom-6 sm:max-w-md bg-black text-latte border border-white/15 shadow-2xl p-5 sm:p-6">
+    <p class="kicker font-gothic text-selective mb-3">Cookies</p>
+    <p class="font-gothic text-sm text-latte/85 leading-relaxed">
+      Só com o seu ok. Usamos medição (Google Analytics e Meta Pixel) para entender o que funciona no site — nada além disso.
+      <a href="privacidade.html" class="underline underline-offset-4 hover:text-selective">Política de privacidade</a>.
+    </p>
+    <div class="mt-5 flex gap-3">
+      <button type="button" data-consent="granted" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-black rounded-sm hover:bg-selective transition-colors">Aceitar</button>
+      <button type="button" data-consent="denied" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] border border-latte/40 text-latte rounded-sm hover:border-latte transition-colors">Recusar</button>
+    </div>
+  </div>
+  <!-- Mostra o banner já no primeiro paint (sem esperar os scripts deferidos); os botões são ligados em consentimento.js -->
+  <script>try { var c = localStorage.getItem('rd-consent'); if (c !== 'granted' && c !== 'denied') document.getElementById('cookie-banner').hidden = false; } catch (e) { document.getElementById('cookie-banner').hidden = false; }</script>
+
+  <!-- =========================================================
+       MODAIS DOS SERVIÇOS — <dialog> nativo (foco preso, Esc fecha). Abertos pelos cards de Serviços.
+  ========================================================== -->
+  <dialog id="svc-toxina-botulinica" class="svc-dialog" aria-labelledby="svc-toxina-botulinica-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-toxina-botulinica-480.webp" srcset="assets/img/servico-toxina-botulinica-480.webp 480w, assets/img/servico-toxina-botulinica-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Rosa vermelha sobre fundo vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 01</p>
+        <h3 id="svc-toxina-botulinica-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Toxina botulínica</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Relaxa a força de músculos específicos da expressão, aplicada em pontos escolhidos para o seu rosto. A ideia não é apagar o que você sente: é dosar onde faz sentido e deixar o resto falar.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20toxina%20botul%C3%ADnica." data-cta="servico-toxina-botulinica" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-preenchimento" class="svc-dialog" aria-labelledby="svc-preenchimento-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-preenchimento-480.webp" srcset="assets/img/servico-preenchimento-480.webp 480w, assets/img/servico-preenchimento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Textura de pele em macro, em círculo, sobre vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 02</p>
+        <h3 id="svc-preenchimento-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Preenchimento</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Preenchedor injetável em pontos estratégicos para trabalhar volume, contorno e sustentação. Antes de qualquer seringa, leitura de proporção: o desenho parte do seu rosto, não de um molde.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20preenchimento." data-cta="servico-preenchimento" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-peelings" class="svc-dialog" aria-labelledby="svc-peelings-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-peelings-480.webp" srcset="assets/img/servico-peelings-480.webp 480w, assets/img/servico-peelings-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1280" alt="Frasco conta-gotas de sérum sobre tecido vermelho" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 03</p>
+        <h3 id="svc-peelings-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Peelings</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Ácidos aplicados na pele em concentração e camadas definidas para renovar a superfície. Ativo, intensidade e preparo dependem da sua pele, da sua rotina e da época do ano.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20peelings." data-cta="servico-peelings" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-microagulhamento" class="svc-dialog" aria-labelledby="svc-microagulhamento-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-microagulhamento-480.webp" srcset="assets/img/servico-microagulhamento-480.webp 480w, assets/img/servico-microagulhamento-960.webp 960w" sizes="(min-width: 1024px) 240px, 50vw" width="960" height="1281" alt="Textura de pele em macro, em círculo, sobre fundo creme" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-vivid opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 04</p>
+        <h3 id="svc-microagulhamento-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Microagulhamento</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Microperfurações controladas que estimulam a produção de colágeno — o corpo trabalhando a favor da própria textura. Profundidade e número de sessões saem da avaliação.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20microagulhamento." data-cta="servico-microagulhamento" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="svc-ultrassom-mpt" class="svc-dialog" aria-labelledby="svc-ultrassom-mpt-t">
+    <div class="svc-panel grid md:grid-cols-[2fr_3fr] bg-black text-latte">
+      <div class="relative h-44 md:h-auto overflow-hidden">
+        <img src="assets/img/servico-ultrassom-mpt-480.webp" width="364" height="486" alt="Rosa vermelha sobre fundo preto" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+      </div>
+      <div class="relative p-7 sm:p-10">
+        <button type="button" data-close class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center font-gothic text-2xl text-latte/80 hover:text-selective" aria-label="Fechar">×</button>
+        <p class="kicker font-gothic text-selective mb-4">Experiência 05</p>
+        <h3 id="svc-ultrassom-mpt-t" class="font-gothic font-medium uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight mb-5 pr-8">Ultrassom MPT</h3>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-4">Ultrassom microfocado que entrega energia em camadas profundas da pele, sem cortes, para estimular firmeza e sustentação. O protocolo é definido depois da avaliação.</p>
+        <p class="font-gothic text-latte/85 leading-relaxed mb-8">Tudo começa numa conversa e numa avaliação presencial. Indicação, quantidade e plano saem dela — nada de pacote pronto.</p>
+        <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20ultrassom%20MPT." data-cta="servico-ultrassom-mpt" target="_blank" rel="noopener"
+           class="inline-flex items-center min-h-[48px] font-gothic uppercase tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm whitespace-nowrap bg-vivid text-black px-6 sm:px-7 py-4 rounded-sm hover:bg-selective transition-colors">
+          Saber mais no WhatsApp →
+        </a>
+        <p class="font-gothic text-xs text-latte/60 mt-6">Procedimento médico. Indicação somente após avaliação; resultados variam de pessoa para pessoa.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Lightbox dos prints (preenchido por assets/js/prova.js) -->
+  <dialog id="print-dialog" class="svc-dialog print-dialog" aria-label="Print em tamanho grande">
+    <div class="svc-panel relative bg-black p-3 sm:p-4">
+      <button type="button" data-close class="absolute top-2 right-2 z-10 w-11 h-11 flex items-center justify-center bg-black/70 font-gothic text-2xl text-latte hover:text-selective" aria-label="Fechar">×</button>
+      <img id="print-dialog-img" src="data:," alt="" class="block mx-auto max-h-[calc(100dvh-64px)] w-auto h-auto" />
+    </div>
+  </dialog>
+
+  <!-- Modais dos serviços: abre pelo card, fecha no ×, no Esc (nativo) ou clicando fora; trava o scroll da página enquanto aberto -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      document.querySelectorAll('.svc-open').forEach(function (btn) {
+        var dlg = document.getElementById(btn.getAttribute('data-svc'));
+        if (!dlg || typeof dlg.showModal !== 'function') return;
+        btn.addEventListener('click', function () { dlg.showModal(); root.classList.add('svc-lock'); });
+        dlg.addEventListener('close', function () { root.classList.remove('svc-lock'); });
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+        dlg.querySelectorAll('[data-close]').forEach(function (c) { c.addEventListener('click', function () { dlg.close(); }); });
+      });
+    })();
+  </script>
+
+  <!-- Scroll reveal geral (Filosofia, Serviços, Lifestyle, Autoridade, CTA): fade-in + leve subida; cada elemento dispara 1x ao entrar no viewport -->
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.sr, .sr-stagger');
+      if (!els.length) return;
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+  <!-- Reduced-motion: o vídeo do hero não roda — volta ao poster estático -->
+  <script>
+    (function () {
+      if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      var v = document.querySelector('.hero-video');
+      if (!v) return;
+      v.removeAttribute('autoplay'); v.autoplay = false; v.pause(); v.load();
+    })();
+  </script>
+
+  <!-- Vídeo de pele (abaixo da dobra): só carrega/toca quando entra na tela; pausa ao sair. Reduced-motion: fica no poster. -->
+  <script>
+    (function () {
+      var vids = document.querySelectorAll('video[data-autoplay-inview]');
+      if (!vids.length) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { v.play && v.play().catch(function () {}); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else { v.pause(); }
+        });
+      }, { rootMargin: '200px 0px' });
+      vids.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
+
+  <!-- Marquee da Lifestyle: mostra a faixa FIXA só enquanto a seção Lifestyle está na viewport.
+       O z-index (Serviços/Autoridade z-30 > marquee z-20 > Lifestyle z-10) cuida do "passar por trás". -->
+  <script>
+    (function () {
+      var sec = document.getElementById('lifestyle');
+      var mq = document.getElementById('lifestyle-marquee');
+      if (!sec || !mq) return;
+      if (!('IntersectionObserver' in window)) { mq.style.opacity = '1'; return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { mq.style.opacity = e.isIntersecting ? '1' : '0'; });
+      }, { threshold: 0 });
+      io.observe(sec);
+    })();
+  </script>
+
+  <!-- TRANSIÇÃO DA ELIPSE (Filosofia): PIN + SCROLL (scrollytelling) + FADE DE COR.
+       O trilho #filo-rail (200vh) prende a cena (sticky) por ~100vh; o progresso do scroll controla:
+       (ETAPA 1) o scale do círculo (1 → preenche a tela) e (ETAPA 2) o blackout (#filo-blackout) que
+       escurece tudo p/ PRETO no fim, emendando sem corte na Diferenciais (preta). -->
+  <script>
+    (function () {
+      var rail = document.getElementById('filo-rail');
+      var circle = document.getElementById('skin-circle');
+      var blackout = document.getElementById('filo-blackout');
+      var dif = document.getElementById('diferenciais');
+      if (!rail || !circle) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // CSS faz o fallback estático (empilha as seções)
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        // Mobile/tablet (< lg): pin desativado (CSS empilha). Zera o estado inline e sai — animação só no desktop.
+        if (window.matchMedia('(max-width: 1023.98px)').matches) {
+          circle.style.transform = '';
+          if (blackout) blackout.style.opacity = '';
+          if (dif) dif.classList.remove('diff-in');
+          return;
+        }
+        var vh = window.innerHeight;
+        var pinTravel = rail.offsetHeight - vh;             // 300vh - 100vh = 200vh de pin
+        if (pinTravel <= 0) return;
+        var scrolled = -rail.getBoundingClientRect().top;   // 0 no início do pin → pinTravel no fim
+        var p = scrolled / pinTravel;
+        p = p < 0 ? 0 : (p > 1 ? 1 : p);
+        // FASE 1 — círculo de pele expande (completa em ~45% do pin)
+        var pe = p / 0.45; pe = pe > 1 ? 1 : pe;
+        var size = circle.offsetWidth || 1;                 // tamanho-base (offsetWidth ignora o transform)
+        var diag = Math.sqrt(window.innerWidth * window.innerWidth + vh * vh);
+        var maxScale = Math.max(1, (diag / size) * 2.5);    // o bastante p/ a skin cobrir a tela
+        circle.style.transform = 'scale(' + (1 + pe * (maxScale - 1)).toFixed(3) + ')';
+        // FASE 2 — blackout: tudo vira PRETO (30% → 55%)
+        if (blackout) {
+          var b = (p - 0.30) / 0.25;
+          blackout.style.opacity = (b < 0 ? 0 : (b > 1 ? 1 : b)).toFixed(3);
+        }
+        // FASE 3 — conteúdo dos Diferenciais nasce em cascata SOBRE o preto (≥56% do pin)
+        if (dif) { dif.classList.toggle('diff-in', p >= 0.56); }
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      // Âncoras para #diferenciais: no desktop o conteúdo só aparece em ≥56% do pin → rola até ~62% do trilho
+      document.querySelectorAll('a[href="#diferenciais"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (window.matchMedia('(max-width: 1023.98px)').matches) return; // mobile: âncora normal (seções empilhadas)
+          e.preventDefault();
+          var pinTravel = rail.offsetHeight - window.innerHeight;
+          var top = rail.getBoundingClientRect().top + window.pageYOffset + pinTravel * 0.62;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', '#diferenciais');
+        });
+      });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+  </script>
+  <!-- Medição (GA4 + Meta Pixel) — só carrega após consentimento -->
+  <script src="assets/js/medicao.js" defer></script>
+  <script src="assets/js/consentimento.js" defer></script>
+  <script src="assets/js/prova.js" defer></script>
+</body>
+</html>
