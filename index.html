@@ -69,7 +69,10 @@
   <!-- Títulos usam 500 (Medium) — peso REAL na fonte, nunca faux-bold. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Carregamento sem bloquear a renderização (font-display: swap já mostra o fallback enquanto baixa) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" /></noscript>
 
 
   <style>
@@ -83,6 +86,14 @@
     }
 
     html { scroll-behavior: smooth; }
+    /* Foco visível (só navegação por teclado): amarelo da marca, legível sobre preto, creme e vermelho */
+    :focus-visible { outline: 2px solid #FFB600; outline-offset: 3px; }
+    #contato :focus-visible, .bg-vivid:focus-visible { outline-color: #000; }
+    .svc-open:focus-visible { outline-offset: -3px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hover\:scale-105:hover, .group:hover .group-hover\:scale-105 { transform: none !important; }
+    }
     body { font-family: 'Special Gothic', system-ui, sans-serif; }
 
     /* Grão/textura cinematográfica sutil (overlay global) */
@@ -208,7 +219,7 @@
         <li><a href="#prova" class="hit hover:text-vivid transition-colors">Autoridade</a></li>
       </ul>
       <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="nav" target="_blank" rel="noopener"
-         class="hit font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-latte px-4 py-2 rounded-sm hover:bg-selective hover:text-black transition-colors">
+         class="hit font-gothic text-xs uppercase tracking-[0.18em] bg-vivid text-black px-4 py-2 rounded-sm hover:bg-selective transition-colors">
         WhatsApp
       </a>
     </nav>
@@ -221,7 +232,7 @@
     <section id="hero" class="relative min-h-screen flex items-end overflow-hidden pt-16">
       <!-- Vídeo de fundo do Hero: autoplay/loop/muted/playsinline (obrigatórios p/ autoplay); poster = retrato P&B (fallback no load e no mobile sem autoplay).
            H.264 sem áudio + faststart: 720p (~1,1 MB) no celular, 1080p (~3,3 MB) no resto. Originais em _fontes/ (fora do deploy). -->
-      <video class="hero-video absolute inset-0 w-full h-full object-cover z-0"
+      <video aria-hidden="true" class="hero-video absolute inset-0 w-full h-full object-cover z-0"
              autoplay loop muted playsinline preload="auto"
              poster="assets/img/hero-poster.webp">
         <source src="videos/final-bg-720.mp4" type="video/mp4" media="(max-width: 767.98px)" />
@@ -247,7 +258,7 @@
         </p>
         <div class="mt-10 flex flex-wrap items-center gap-4 hero-rise" style="animation-delay:.6s">
           <a href="https://wa.me/5547991920666?text=Oi%2C%20Dr.%20Rafa%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-cta="hero" target="_blank" rel="noopener"
-             class="font-gothic uppercase tracking-[0.18em] text-sm bg-vivid text-latte px-7 py-4 rounded-sm hover:bg-selective hover:text-black transition-colors">
+             class="font-gothic uppercase tracking-[0.18em] text-sm bg-vivid text-black px-7 py-4 rounded-sm hover:bg-selective transition-colors">
             Falar no WhatsApp
           </a>
           <a href="#filosofia"
@@ -290,16 +301,15 @@
 
         <!-- Motivo macro-de-pele: SKI-2N com zoom + máscara radial que dissolve no fundo creme (#FFF2E2) em toda a volta, sem corte seco na borda -->
         <div class="flex justify-center sr" style="transition-delay:.15s">
-          <div id="skin-circle" class="w-[70vw] max-w-xl aspect-square"
-               role="img" aria-label="Pele em macro — matéria viva (vídeo)"
+          <div id="skin-circle" class="w-[70vw] max-w-xl aspect-square overflow-hidden"
+               role="img" aria-label="Pele em macro — matéria viva"
                style="transform-origin:center; will-change:transform;
                       -webkit-mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);
                       mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);">
-            <video id="skin-video" class="w-full h-full object-cover block"
+            <video id="skin-video" aria-hidden="true" class="w-full h-full object-cover block"
                    muted loop playsinline preload="none" data-autoplay-inview
                    poster="assets/img/pele-macro.webp"
-                   style="-webkit-mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);
-                          mask-image: radial-gradient(circle at center, #000 42%, transparent 72%);">
+                   style="transform: scale(1.7); transform-origin: center;"><!-- zoom 1.7 = background-size:170% da versão em imagem; máscara fica só no #skin-circle (antes estava duplicada e encolhia o disco) -->
               <source src="videos/pele-macro.mp4" type="video/mp4">
             </video>
           </div>
@@ -549,23 +559,23 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto sr-stagger">
           <!-- REEL 1 -->
           <figure>
-            <div class="ph text-black/40 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
-            <figcaption class="font-gothic text-sm text-black/50 mt-3 text-center">@influencer — a confirmar</figcaption>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
           <!-- REEL 2 -->
           <figure>
-            <div class="ph text-black/40 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
-            <figcaption class="font-gothic text-sm text-black/50 mt-3 text-center">@influencer — a confirmar</figcaption>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
           <!-- REEL 3 -->
           <figure>
-            <div class="ph text-black/40 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
-            <figcaption class="font-gothic text-sm text-black/50 mt-3 text-center">@influencer — a confirmar</figcaption>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
           <!-- REEL 4 (opcional) — descomentar se houver um 4º reel
           <figure>
-            <div class="ph text-black/40 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
-            <figcaption class="font-gothic text-sm text-black/50 mt-3 text-center">@influencer — a confirmar</figcaption>
+            <div class="ph text-black/60 aspect-[9/16] bg-black/[0.03]"><span>[ REEL 9:16 ]<br />embed do Instagram<br />(placeholder de vídeo)</span></div>
+            <figcaption class="font-gothic text-sm text-black/60 mt-3 text-center">@influencer — a confirmar</figcaption>
           </figure>
           -->
         </div>
@@ -642,6 +652,8 @@
       <button type="button" data-consent="denied" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] border border-latte/40 text-latte rounded-sm hover:border-latte transition-colors">Recusar</button>
     </div>
   </div>
+  <!-- Mostra o banner já no primeiro paint (sem esperar os scripts deferidos); os botões são ligados em consentimento.js -->
+  <script>try { var c = localStorage.getItem('rd-consent'); if (c !== 'granted' && c !== 'denied') document.getElementById('cookie-banner').hidden = false; } catch (e) { document.getElementById('cookie-banner').hidden = false; }</script>
 
   <!-- =========================================================
        MODAIS DOS SERVIÇOS — <dialog> nativo (foco preso, Esc fecha). Abertos pelos cards de Serviços.
@@ -780,6 +792,16 @@
     })();
   </script>
 
+  <!-- Reduced-motion: o vídeo do hero não roda — volta ao poster estático -->
+  <script>
+    (function () {
+      if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      var v = document.querySelector('.hero-video');
+      if (!v) return;
+      v.removeAttribute('autoplay'); v.autoplay = false; v.pause(); v.load();
+    })();
+  </script>
+
   <!-- Vídeo de pele (abaixo da dobra): só carrega/toca quando entra na tela; pausa ao sair. Reduced-motion: fica no poster. -->
   <script>
     (function () {
@@ -858,6 +880,17 @@
         if (dif) { dif.classList.toggle('diff-in', p >= 0.56); }
       }
       function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      // Âncoras para #diferenciais: no desktop o conteúdo só aparece em ≥56% do pin → rola até ~62% do trilho
+      document.querySelectorAll('a[href="#diferenciais"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (window.matchMedia('(max-width: 1023.98px)').matches) return; // mobile: âncora normal (seções empilhadas)
+          e.preventDefault();
+          var pinTravel = rail.offsetHeight - window.innerHeight;
+          var top = rail.getBoundingClientRect().top + window.pageYOffset + pinTravel * 0.62;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', '#diferenciais');
+        });
+      });
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll);
       update();

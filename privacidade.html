@@ -14,7 +14,10 @@
   <link rel="stylesheet" href="assets/css/site.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Carregamento sem bloquear a renderização (font-display: swap já mostra o fallback enquanto baixa) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;500;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     body { font-family: 'Special Gothic', system-ui, sans-serif; }
     .hit { position: relative; }
@@ -106,6 +109,8 @@
       <button type="button" data-consent="denied" class="min-h-[44px] px-6 font-gothic text-xs uppercase tracking-[0.18em] border border-latte/40 text-latte rounded-sm hover:border-latte transition-colors">Recusar</button>
     </div>
   </div>
+  <!-- Mostra o banner já no primeiro paint (sem esperar os scripts deferidos); os botões são ligados em consentimento.js -->
+  <script>try { var c = localStorage.getItem('rd-consent'); if (c !== 'granted' && c !== 'denied') document.getElementById('cookie-banner').hidden = false; } catch (e) { document.getElementById('cookie-banner').hidden = false; }</script>
 
   <script src="assets/js/medicao.js" defer></script>
   <script src="assets/js/consentimento.js" defer></script>
